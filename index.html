@@ -1,0 +1,979 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Трейгер Георгий Александрович — сосудистый хирург, флебология</title>
+<meta name="description" content="Сосудистый хирург (ангиохирург) и флеболог в Москве. 10+ лет практики, 4000+ операций. Приём очно и дистанционно, без лишних обследований и очередей.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Onest:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#F8FAFF;
+  --navy:#0F1B3D;
+  --navy-deep:#0A1330;
+  --blue:#3D63D6;
+  --cyan:#5FD8F5;
+  --cyan-soft:#BFEFFB;
+  --ink:#0F1B3D;
+  --ink-muted:#68729A;
+  --ink-faint:var(--ink-muted); 
+  --line:rgba(15,27,61,0.10);
+  --panel:#FFFFFF;
+  --panel-tint:#F0F4FF;
+  --radius-lg:28px;
+  --radius-md:20px;
+  --radius-sm:12px;
+  --container:1240px;
+  --font-display:'Onest',system-ui,sans-serif;
+  --font-body:'Onest',system-ui,sans-serif;
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;max-width:100%;}
+body{max-width:100%;font-family:var(--font-body);background:var(--bg);color:var(--ink);line-height:1.5;-webkit-font-smoothing:antialiased;overflow-x:hidden;}
+img,video,iframe{max-width:100%;}
+.wrap{max-width:var(--container);margin:0 auto;padding:0 32px;}
+img{max-width:100%;display:block;}
+a{color:inherit;text-decoration:none;}
+ul{list-style:none;}
+button{font-family:inherit;}
+h1,h2,h3,h4{font-family:var(--font-display);letter-spacing:-0.01em;line-height:1.08;}
+section{position:relative;padding:120px 0;overflow:hidden;}
+.dark{background:rgba(10,17,42,0.96);color:#F5F8FF;}
+.dark{--ink:#F5F8FF;--ink-muted:#AEB8DE;--ink-faint:var(--ink-muted);--panel:#16224A;--line:rgba(255,255,255,0.12);--panel-tint:#141F44;}
+.skip-link{position:absolute;left:-999px;top:0;background:var(--navy);color:#fff;padding:12px 20px;z-index:999;border-radius:0 0 8px 0;}
+.skip-link:focus{left:0;}
+.eyebrow{display:inline-flex;align-items:center;font-size:13px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--blue);margin-bottom:18px;}
+.dark .eyebrow{color:var(--cyan);}
+.section-head{max-width:640px;margin-bottom:56px;}
+.section-head h2{font-size:clamp(1.9rem,3.2vw,2.7rem);font-weight:700;color:var(--ink);}
+.section-head p{margin-top:16px;font-size:16px;color:var(--ink-muted);max-width:56ch;}
+
+
+.reveal{opacity:0;filter:blur(2px);transform:translateY(12px);transition:opacity .45s cubic-bezier(.16,1,.3,1),filter .45s cubic-bezier(.16,1,.3,1),transform .45s cubic-bezier(.16,1,.3,1);}
+.reveal.is-visible{opacity:1;filter:blur(0);transform:translateY(0);}
+
+
+.reveal.char-parent{opacity:1;filter:none;transform:none;}
+.word{display:inline-block;}
+.char{display:inline-block;opacity:0;filter:blur(3px) brightness(.72);transition:opacity .3s ease,filter .3s ease;white-space:pre;}
+.char-parent.is-visible .char{opacity:1;filter:blur(0) brightness(1);}
+
+
+.btn-label{display:inline-flex;height:1.2em;line-height:1.2;vertical-align:top;}
+.btn-char{overflow:hidden;height:1.2em;display:inline-block;}
+.btn-char-inner{display:flex;flex-direction:column;transition:transform .5s cubic-bezier(.65,0,.35,1);}
+.btn-char-line{height:1.2em;line-height:1.2;display:block;white-space:pre;}
+.btn:hover .btn-char-inner{transform:translateY(-1.2em);}
+
+
+.btn{display:inline-flex;align-items:center;gap:10px;font-family:var(--font-body);font-weight:600;font-size:15px;padding:15px 26px;border-radius:999px;white-space:nowrap;border:none;cursor:pointer;transition:transform .25s cubic-bezier(.16,1,.3,1),background .25s ease,border-color .25s ease,box-shadow .25s ease;}
+.btn-lg{padding:20px 36px;font-size:16.5px;}
+.btn:hover{transform:translateY(-2px);}
+.btn-outline{background:transparent;border:1.5px solid var(--line);color:var(--ink);}
+.btn-outline:hover{border-color:var(--cyan);color:var(--navy);}
+.dark .btn-outline{border-color:rgba(255,255,255,0.28);color:#fff;}
+.dark .btn-outline:hover{border-color:var(--cyan);color:var(--cyan);}
+.btn-solid{background:var(--navy);color:#fff;box-shadow:0 16px 32px -12px rgba(15,27,61,0.45);}
+.btn-solid:hover{background:#182A5C;}
+.dark .btn-solid{background:var(--cyan);color:var(--navy-deep);box-shadow:0 16px 32px -12px rgba(95,216,245,0.4);}
+.dark .btn-solid:hover{background:#7FE3F8;}
+.btn-arrow{display:inline-flex;align-items:center;justify-content:center;transition:transform .25s cubic-bezier(.16,1,.3,1);}
+.btn:hover .btn-arrow{transform:translate(3px,-3px);}
+.btn-play{display:inline-flex;align-items:center;gap:12px;font-weight:600;font-size:15px;color:var(--navy);}
+.btn-play-icon{width:30px;height:30px;border-radius:50%;border:1.5px solid rgba(15,27,61,.22);color:var(--navy);display:flex;align-items:center;justify-content:center;transition:background .25s ease,color .25s ease,border-color .25s ease,transform .25s ease;flex-shrink:0;}
+.btn-play-icon svg{width:11px;height:11px;}
+.btn-play:hover .btn-play-icon{background:var(--navy);border-color:var(--navy);color:#fff;transform:scale(1.06);}
+.btn-play-label{border-bottom:1px dotted var(--ink-muted);padding-bottom:2px;}
+
+
+.site-header{position:sticky;top:0;z-index:100;background:rgba(248,250,255,0.72);backdrop-filter:blur(16px);border-bottom:1px solid var(--line);}
+.header-row{display:flex;align-items:center;gap:32px;padding:20px 0;}
+.brand{display:flex;align-items:center;gap:12px;margin-right:auto;}
+.brand-mark{position:relative;width:40px;height:40px;border-radius:50%;border:1.5px solid var(--navy);display:flex;align-items:center;justify-content:center;font-family:var(--font-display);font-weight:700;font-size:16px;color:var(--navy);}
+.brand-mark::after{content:'';position:absolute;top:2px;right:2px;width:5px;height:5px;border-radius:50%;background:var(--cyan);}
+.brand-text{font-size:14px;font-weight:600;line-height:1.3;}
+.brand-text small{display:block;font-weight:400;color:var(--ink-muted);font-size:11.5px;}
+.main-nav{display:flex;gap:30px;font-size:14.5px;color:var(--ink-muted);}
+.main-nav a:hover{color:var(--ink);}
+
+
+.hero{
+  padding:100px 0 0;
+  position:relative;
+  overflow:hidden;
+  background:
+    radial-gradient(ellipse 48% 80% at 58% 50%, rgba(189,246,253,0.95) 0%, rgba(189,246,253,0.5) 22%, rgba(189,246,253,0.12) 40%, transparent 60%),
+    linear-gradient(112deg, #ffffff 0%, #f8fcff 30%, #dff9fc 46%, #3a4d94 68%, #253163 84%, #141d3f 100%);
+}
+.hero-arc{
+  position:absolute;
+  width:52vw;height:96vh;
+  right:6vw;top:-10vh;
+  border-radius:50%;
+  background:radial-gradient(ellipse at center, rgba(255,255,255,0.92) 0%, rgba(255,255,255,0.6) 34%, rgba(255,255,255,0.12) 52%, transparent 66%);
+  filter:blur(1px);
+  z-index:0;
+  pointer-events:none;
+  animation:breathe 7s ease-in-out infinite alternate;
+}
+.hero-glow-core{
+  position:absolute;
+  width:36vw;height:36vw;
+  right:14vw;top:22%;
+  border-radius:50%;
+  background:radial-gradient(circle at center, rgba(95,216,245,0.55) 0%, rgba(95,216,245,0.22) 45%, transparent 74%);
+  filter:blur(6px);
+  z-index:0;
+  pointer-events:none;
+  animation:breathe 7s ease-in-out infinite alternate;
+  animation-delay:.6s;
+}
+@keyframes breathe{from{transform:scale(0.96);opacity:0.65;}to{transform:scale(1.04);opacity:0.9;}}
+.hero-orb-lines{position:absolute;right:0;bottom:0;width:58%;height:78%;z-index:1;fill:none;stroke:url(#heroLineGrad);stroke-width:0.7;stroke-linecap:round;pointer-events:none;}
+.hero-orb-lines path{stroke-dasharray:1500;stroke-dashoffset:1500;}
+
+.hero-noise{position:absolute;inset:0;z-index:1;opacity:0.035;pointer-events:none;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+.hero-grid{position:relative;z-index:2;display:grid;grid-template-columns:1.02fr 0.98fr;grid-template-rows:720px;gap:20px;align-items:stretch;height:720px;}
+.hero-copy{padding-bottom:100px;display:flex;flex-direction:column;justify-content:flex-start;align-items:flex-start;}
+
+.hero-h1{font-weight:800;font-size:clamp(1.9rem,3.6vw,3.2rem);line-height:1.15;margin-bottom:26px;}
+
+.hero-h1 .line{display:block;}
+.hero-h1 .c-navy{color:var(--navy);}
+.hero-h1 .c-blue{color:var(--blue);}
+.hero-h1 .dot{width:0.16em;height:0.16em;min-width:10px;min-height:10px;border-radius:50%;transform:translateY(-0.55em);}
+.hero-h1 .dot-cyan{background:var(--cyan);}
+.hero-h1 .dot-blue{background:var(--blue);}
+.hero-sub{font-size:17px;color:var(--ink-muted);max-width:42ch;margin-bottom:36px;}
+.hero-cta-row{display:flex;align-items:center;gap:32px;margin-bottom:56px;flex-wrap:wrap;}
+.hero-stats{display:flex;align-items:center;gap:0;}
+.hero-stat{padding:0 28px;}
+.hero-stat:first-child{padding-left:0;}
+.hero-stat + .hero-stat{border-left:1px solid var(--line);}
+.hero-stat strong{display:flex;align-items:center;gap:6px;font-family:var(--font-display);font-size:30px;font-weight:700;color:var(--navy);}
+.hero-stat strong svg{width:20px;height:20px;color:var(--blue);}
+.hero-stat span{display:block;font-size:13px;color:var(--ink-muted);margin-top:4px;white-space:nowrap;}
+
+.hero-portrait{position:relative;z-index:2;display:flex;align-items:flex-start;justify-content:center;height:100%;}
+.hero-portrait img{height:120%;max-height:none;width:auto;max-width:none;flex-shrink:0;filter:drop-shadow(0 30px 50px rgba(10,19,48,0.35));position:relative;z-index:2;
+  transform:translate3d(var(--mouse-x,0px),var(--mouse-y,0px),0);transition:transform .3s ease-out;}
+
+.hero-rating-badge{position:absolute;right:0;bottom:16%;z-index:3;background:rgba(15,27,61,0.4);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);border-radius:20px;padding:18px 22px;}
+.hero-rating-badge-top{display:flex;align-items:baseline;gap:8px;margin-bottom:6px;}
+.hero-rating-badge strong{font-family:var(--font-body);font-weight:700;font-size:19px;color:#fff;}
+.hero-rating-badge .stars{color:var(--cyan);font-size:12px;letter-spacing:1px;}
+.hero-rating-badge span{display:block;font-size:12.5px;line-height:1.4;color:rgba(255,255,255,0.65);}
+
+
+.about{background:rgba(248,250,255,0.8);}
+.about-orb{position:absolute;left:-14%;top:10%;width:42%;height:90%;border-radius:50%;background:radial-gradient(circle at 60% 40%,#eefbff 0%,#bdeefc 25%,#6fcdf0 50%,transparent 74%);filter:blur(6px);z-index:0;opacity:0.8;}
+.about-grid{position:relative;z-index:1;display:grid;grid-template-columns:0.95fr 1.05fr;gap:64px;align-items:stretch;}
+.about-copy{display:flex;flex-direction:column;justify-content:flex-start;align-items:flex-start;} 
+.about-frame{position:relative;border-radius:var(--radius-lg);overflow:hidden;min-height:420px;aspect-ratio:6/5;box-shadow:0 40px 70px -24px rgba(15,27,61,0.3);} 
+.about-frame img{width:100%;height:100%;object-fit:cover;}
+.about-frame-ring{position:absolute;inset:-14px;border-radius:calc(var(--radius-lg) + 14px);border:1.5px solid var(--cyan-soft);z-index:-1;}
+.about-copy h2{font-size:clamp(1.9rem,3vw,2.6rem);margin-bottom:22px;color:var(--navy);}
+.about-copy p{color:var(--ink-muted);font-size:16px;line-height:1.7;margin-bottom:30px;max-width:52ch;}
+.about-photo-track{display:flex;height:100%;transition:transform .5s cubic-bezier(.65,0,.35,1);}
+.about-photo-slide{flex:0 0 100%;height:100%;}
+.about-photo-slide img{width:100%;height:100%;object-fit:cover;display:block;}
+.about-photo-arrow{position:absolute;top:50%;transform:translateY(-50%);width:40px;height:40px;border-radius:50%;border:none;background:rgba(255,255,255,0.85);backdrop-filter:blur(4px);color:var(--navy);font-size:18px;line-height:1;display:flex;align-items:center;justify-content:center;cursor:pointer;z-index:3;transition:background .2s ease;}
+.about-photo-arrow:hover{background:#fff;}
+.about-photo-prev{left:16px;}
+.about-photo-next{right:16px;}
+.about-photo-counter{position:absolute;right:16px;bottom:16px;z-index:3;background:rgba(15,27,61,0.55);backdrop-filter:blur(6px);color:#fff;font-size:12.5px;font-weight:600;padding:6px 12px;border-radius:999px;}
+
+
+.roadmap-sec{padding:88px 0 92px;background:rgba(248,250,255,0.8);}
+.roadmap-sec .wrap{max-width:1440px;}
+.roadmap-sec .section-head{margin-bottom:34px;}
+.path-switcher{display:inline-flex;gap:4px;background:var(--panel-tint);border-radius:999px;padding:5px;margin-bottom:34px;}
+.path-switcher-btn{position:relative;z-index:2;border:none;background:transparent;padding:11px 30px;border-radius:999px;font-family:var(--font-display);font-weight:600;font-size:14px;color:var(--ink-muted);cursor:pointer;transition:color .3s ease;}
+.path-switcher-btn.is-active{color:#fff;}
+.path-switcher-thumb{position:absolute;top:5px;left:5px;height:calc(100% - 10px);width:100px;border-radius:999px;background:linear-gradient(120deg,var(--navy),var(--blue));transition:transform .4s cubic-bezier(.65,0,.35,1),width .4s cubic-bezier(.65,0,.35,1);z-index:1;}
+.roadmap-track{position:relative;width:min(100% - 64px,1376px);margin:0 auto;}
+.roadmap-steps{position:relative;display:flex;flex-direction:row;align-items:flex-start;justify-content:space-between;gap:20px;z-index:1;}
+.roadmap-view[data-roadmap-view="1"] .roadmap-steps{max-width:860px;margin:0 auto;}
+.roadmap-view[hidden]{display:none;}
+.roadmap-line{position:absolute;height:2px;background:var(--blue);opacity:0.35;z-index:0;}
+.rstep{position:relative;display:flex;flex-direction:column;align-items:center;text-align:center;gap:7px;flex:0 1 178px;min-width:0;}
+.rstep-dot{width:56px;height:56px;border:1px solid var(--line);border-radius:50%;background:#fff;display:flex;align-items:center;justify-content:center;color:var(--blue);box-shadow:none;flex-shrink:0;}
+.rstep-dot svg{width:22px;height:22px;}
+.rstep-dot{margin-top:6px;}
+.rstep-body{display:contents;}
+.rstep-label{order:-1;font-size:12px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:var(--ink-faint);}
+.rstep-body h3{font-size:16px;line-height:1.2;font-weight:700;color:var(--navy);margin:0;max-width:170px;}
+.rstep-body p{font-size:13px;color:var(--ink-muted);line-height:1.38;max-width:156px;}
+
+
+.services-sec{background:rgba(248,250,255,0.8);}
+.services-grid{display:grid;grid-template-columns:1fr 0.85fr;gap:64px;align-items:start;}
+.svc-list li{border-bottom:1px solid var(--line);}
+.svc-trigger{display:flex;align-items:baseline;gap:22px;width:100%;padding:24px 0;background:none;border:none;cursor:pointer;text-align:left;transition:padding .3s ease;}
+.svc-index{font-family:var(--font-display);font-size:15px;color:var(--ink-faint);flex:none;width:32px;transition:color .3s ease,font-size .3s ease;}
+.svc-title{font-family:var(--font-display);font-size:19px;font-weight:600;color:var(--ink-faint);transition:color .3s ease;}
+li.is-active .svc-trigger{padding:30px 0 14px;}
+li.is-active .svc-index{color:var(--cyan);font-size:22px;text-shadow:0 0 24px rgba(95,216,245,0.5);}
+li.is-active .svc-title{color:var(--navy);}
+.svc-content{display:grid;grid-template-rows:0fr;transition:grid-template-rows .35s ease;}
+li.is-active .svc-content{grid-template-rows:1fr;}
+.svc-content-inner{overflow:hidden;}
+.svc-content-inner p{padding:0 0 26px 54px;color:var(--ink-muted);font-size:14.5px;line-height:1.6;max-width:60ch;}
+.svc-display{position:relative;aspect-ratio:4/5;display:flex;align-items:center;justify-content:center;}
+.svc-display img{width:100%;height:100%;object-fit:contain;opacity:0;filter:drop-shadow(0 30px 50px rgba(20,40,90,0.14));transition:opacity .5s ease;}
+.svc-display img.is-loaded{opacity:1;}
+
+
+
+.proof{padding:0 0 64px;overflow:visible;}
+.proof-track{position:relative;height:260vh;}
+.proof-sticky{position:sticky;top:0;height:100vh;width:100%;overflow:hidden;display:flex;align-items:center;justify-content:center;background:var(--bg);}
+.proof-frame{position:relative;width:100vw;height:100vh;max-width:1600px;border-radius:48px;overflow:hidden;background:var(--bg);will-change:transform,border-radius;box-sizing:border-box;}
+.proof-grid{position:absolute;inset:-14% -6%;display:flex;gap:20px;justify-content:center;transform-style:preserve-3d;will-change:transform;}
+.proof-col{flex:1;display:flex;flex-direction:column;gap:20px;will-change:transform;}
+.proof-card{position:relative;width:100%;aspect-ratio:3/4;border-radius:14px;overflow:hidden;background:#E4EAF5;flex-shrink:0;}
+.proof-card img{width:100%;height:100%;object-fit:cover;opacity:0.72;filter:grayscale(1) brightness(0.95);}
+.proof-card::after{content:'';position:absolute;inset:0;background:linear-gradient(160deg,rgba(15,27,61,0.55),rgba(61,99,214,0.4));mix-blend-mode:multiply;}
+.proof-payoff{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;opacity:0;z-index:3;pointer-events:none;}
+.proof-payoff-panel{background:rgba(6,10,24,0.55);backdrop-filter:blur(6px);border-radius:var(--radius-lg);padding:36px 56px;}
+.proof-payoff-panel .odometer{color:#fff;}
+.proof-payoff .proof-payoff-panel .fan-caption{color:rgba(255,255,255,0.82);}
+.odometer{display:inline-flex;align-items:flex-start;font-family:var(--font-display);font-size:clamp(4.5rem,13vw,10.5rem);font-weight:900;color:var(--ink);font-variant-numeric:tabular-nums;line-height:1;}
+.odometer-digit{position:relative;height:1em;width:0.64em;overflow:hidden;}
+.odometer-strip{display:flex;flex-direction:column;transition:transform 1.2s cubic-bezier(.22,1,.36,1);}
+.odometer-strip span{height:1em;line-height:1;display:flex;align-items:center;justify-content:center;}
+.odometer-plus{display:inline-block;margin-left:0.06em;}
+.fan-caption{color:var(--ink-muted);margin-top:14px;font-size:22px;font-weight:600;}
+.reasons-grid{display:none;grid-template-columns:repeat(4,1fr);gap:20px;margin-top:40px;} 
+.reason-card{border-radius:var(--radius-md);padding:24px;background:var(--panel);border:1px solid var(--line);}
+.reason-card-top{display:flex;align-items:center;gap:10px;margin-bottom:22px;}
+.reason-icon{flex:none;width:32px;height:32px;border-radius:50%;background:rgba(61,99,214,0.12);color:var(--blue);display:flex;align-items:center;justify-content:center;}
+.reason-icon svg{width:14px;height:14px;}
+.reason-label{font-size:12.5px;font-weight:600;color:var(--ink-muted);}
+.reason-number{font-family:var(--font-display);font-size:32px;font-weight:800;color:var(--ink);line-height:1.15;}
+.reason-caption{font-size:13px;color:var(--ink-muted);margin-top:4px;}
+
+
+.proof-static{padding:96px 0;background:var(--navy);}
+.proof-static-grid{display:grid;grid-template-columns:minmax(0,.9fr) minmax(420px,1.1fr);gap:72px;align-items:stretch;}
+.proof-static-copy{display:flex;flex-direction:column;align-items:flex-start;}
+.proof-static-number{font-family:var(--font-display);font-size:clamp(6rem,12vw,10rem);font-weight:800;line-height:.82;letter-spacing:-.07em;color:#fff;margin:30px 0 18px;}
+.proof-static-number span{font-size:.44em;color:var(--cyan);vertical-align:top;margin-left:.08em;}
+.proof-static-copy h2{font-size:clamp(1.8rem,3vw,2.8rem);color:#fff;max-width:12ch;margin:0 0 18px;}
+.proof-static-lead{font-size:15px;line-height:1.6;color:rgba(255,255,255,.64);max-width:40ch;}
+.proof-static-facts{display:grid;grid-template-columns:repeat(3,1fr);width:100%;margin-top:auto;padding-top:42px;border-top:1px solid rgba(255,255,255,.14);gap:20px;}
+.proof-static-facts div{display:flex;flex-direction:column;gap:6px;}
+.proof-static-facts strong{font-family:var(--font-display);font-size:28px;color:#fff;}
+.proof-static-facts span{font-size:12.5px;line-height:1.35;color:rgba(255,255,255,.58);}
+.proof-static-photos{display:grid;grid-template-columns:1fr 1fr;grid-template-rows:1fr 1fr;gap:10px;min-height:520px;}
+.proof-static-photos img{width:100%;height:100%;object-fit:cover;filter:grayscale(1);opacity:.84;border-radius:var(--radius-sm);}
+
+
+
+.reviews-sec{padding:110px 0 130px;}
+.reviews-sec .wrap{max-width:1440px;}
+
+.reviews-carousel-head{margin-bottom:36px;text-align:center;}
+.reviews-carousel-head h2{font-size:clamp(1.9rem,3.2vw,2.7rem);font-weight:700;color:var(--ink);}
+
+.reviews-carousel-head .eyebrow{margin-bottom:14px;font-size:15px;color:var(--navy);}
+.reviews-carousel-head .reviews-view-all{margin-top:18px;font-size:17px;}
+.reviews-carousel{display:flex;align-items:center;justify-content:center;gap:20px;}
+.reviews-carousel-video{position:relative;width:380px;flex:none;border-radius:var(--radius-lg);overflow:hidden;background:#000;box-shadow:0 40px 70px -24px rgba(15,27,61,0.35);}
+
+.reviews-carousel-video video{width:100%;aspect-ratio:9/16;max-height:min(620px,64vh);object-fit:cover;display:block;}
+
+.reviews-play-btn{position:absolute;inset:0;margin:auto;width:64px;height:64px;border:none;background:none;padding:0;color:#fff;display:flex;align-items:center;justify-content:center;cursor:pointer;filter:drop-shadow(0 6px 18px rgba(0,0,0,0.5));transition:transform .2s ease;z-index:2;}
+.reviews-play-btn svg{width:100%;height:100%;}
+.reviews-play-btn:hover{transform:scale(1.08);}
+.reviews-carousel-video.is-playing .reviews-play-btn{display:none;}
+.reviews-carousel-arrow{flex:none;width:44px;height:44px;border-radius:50%;border:1px solid var(--line);background:#fff;color:var(--navy);font-size:20px;line-height:1;display:flex;align-items:center;justify-content:center;cursor:pointer;box-shadow:0 10px 24px -12px rgba(15,27,61,0.3);transition:background .2s ease,transform .2s ease;}
+.reviews-carousel-arrow:hover{background:var(--bg);transform:scale(1.08);}
+.reviews-peek-group{display:flex;align-items:center;gap:14px;flex:none;}
+.reviews-peek{flex:none;width:128px;aspect-ratio:3/4;border:none;background:none;padding:0;cursor:pointer;border-radius:10px;overflow:hidden;opacity:.55;transition:opacity .2s ease;}
+.reviews-peek img{width:100%;height:100%;object-fit:cover;object-position:center 15%;display:block;}
+.reviews-peek:hover{opacity:.85;}
+.reviews-carousel-caption{margin:26px auto 0;max-width:520px;text-align:center;font-family:var(--font-display);font-size:clamp(1.2rem,1.8vw,1.5rem);font-weight:600;color:var(--ink);line-height:1.4;}
+.reviews-carousel-count{margin-top:12px;text-align:center;font-size:14px;color:var(--ink-muted);}
+.reviews-view-all{display:inline-flex;align-items:center;gap:6px;font-family:var(--font-display);font-size:15px;font-weight:600;color:var(--blue);border:none;background:none;transition:color .2s ease;}
+.reviews-view-all:hover{color:var(--navy);}
+@media (max-width:1400px){.reviews-peek-outer{display:none;}}
+@media (max-width:900px){.reviews-peek-group{display:none;}}
+@media (max-width:640px){.reviews-carousel{gap:10px;min-width:0;overflow:hidden;}.reviews-carousel-video{width:min(calc(100% - 88px),300px);}.reviews-carousel-arrow{width:34px;height:34px;font-size:17px;}}
+
+
+.booking-sec{padding:96px 0;}
+.booking-grid{display:grid;grid-template-columns:0.8fr 1.2fr;gap:64px;align-items:start;}
+.booking-info h2{color:#fff;font-size:clamp(1.8rem,2.6vw,2.3rem);margin-bottom:16px;}
+.booking-info>p{color:var(--ink-muted);font-size:15px;max-width:34ch;margin-bottom:32px;}
+.booking-urgent strong{display:block;font-family:var(--font-display);font-size:15px;color:#fff;margin-bottom:8px;}
+.booking-urgent p{font-size:13.5px;line-height:1.6;color:var(--ink-muted);margin-bottom:12px;max-width:34ch;}
+.booking-urgent-link{display:inline-flex;align-items:center;gap:6px;font-size:14px;font-weight:600;color:var(--cyan);}
+.booking-urgent-link:hover{text-decoration:underline;}
+.booking-panel{background:var(--panel-tint);border:0;border-radius:var(--radius-md);padding:36px;}
+.form-hint{color:var(--ink-muted);font-size:14px;margin-bottom:26px;}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-bottom:18px;}
+.form-group label{display:block;font-size:13px;font-weight:600;color:var(--ink-muted);margin-bottom:8px;}
+.form-group input,.form-group textarea{width:100%;border:1px solid var(--line);background:rgba(255,255,255,0.03);border-radius:var(--radius-sm);padding:13px 16px;font-family:var(--font-body);font-size:15px;color:#fff;resize:vertical;transition:border-color .25s ease,box-shadow .25s ease;}
+.form-group input:focus,.form-group textarea:focus{outline:none;border-color:var(--cyan);box-shadow:0 0 0 4px rgba(95,216,245,0.16);}
+.form-group{margin-bottom:18px;}
+.form-optional{font-weight:400;color:var(--ink-faint);}
+.file-input-hidden{position:absolute;width:1px;height:1px;overflow:hidden;opacity:0;}
+.file-attach{display:flex;align-items:center;gap:10px;width:100%;padding:13px 16px;border-radius:var(--radius-sm);border:1.5px dashed var(--line);color:var(--ink-faint);font-size:14px;cursor:pointer;transition:border-color .25s ease,color .25s ease;}
+.file-attach:hover{border-color:var(--cyan);color:#fff;}
+.file-attach svg{width:18px;height:18px;flex-shrink:0;}
+.file-attach.has-file{border-style:solid;border-color:var(--cyan);color:#fff;}
+.file-attach-text{overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
+.form-consent{font-size:12px;color:var(--ink-faint);margin-top:16px;}
+.form-submit{width:100%;justify-content:space-between;padding:17px 26px;}
+
+
+.faq-sec{background:rgba(248,250,255,0.8);}
+.faq-sec .wrap{max-width:1440px;}
+.faq-list li{border-bottom:1px solid var(--line);}
+.faq-trigger{display:flex;align-items:center;gap:22px;width:100%;padding:26px 0;background:none;border:none;cursor:pointer;text-align:left;}
+.faq-index{font-family:var(--font-display);font-size:14px;color:var(--ink-faint);flex:none;width:28px;}
+.faq-title{font-family:var(--font-display);font-size:17px;font-weight:600;color:var(--ink);flex:1;}
+.faq-plus{width:26px;height:26px;border-radius:50%;border:1px solid var(--line);display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:15px;color:var(--ink-muted);transition:transform .3s ease,background .3s ease,color .3s ease;}
+li.is-active .faq-plus{transform:rotate(45deg);background:var(--navy);color:#fff;border-color:var(--navy);}
+.faq-content{display:grid;grid-template-rows:0fr;transition:grid-template-rows .35s ease;}
+li.is-active .faq-content{grid-template-rows:1fr;}
+.faq-content-inner{overflow:hidden;}
+.faq-content-inner p{padding:0 50px 26px 50px;color:var(--ink-muted);font-size:14.5px;line-height:1.6;max-width:60ch;}
+
+
+.site-footer{position:relative;padding:96px 0 0;overflow:hidden;}
+.footer-glow{position:absolute;left:-10%;top:-30%;width:60%;height:100%;border-radius:50%;background:radial-gradient(circle,#5fd8f5 0%,transparent 68%);opacity:0.18;filter:blur(30px);}
+.footer-grid{position:relative;z-index:1;display:grid;grid-template-columns:1.3fr 1fr 1fr 1fr;gap:48px;padding-bottom:64px;}
+.footer-brand .brand-mark{border-color:rgba(255,255,255,.72);background:rgba(255,255,255,.06);color:#fff;}
+.footer-brand .brand-mark::after{background:var(--cyan);box-shadow:0 0 0 3px rgba(95,216,245,.12);}
+.footer-brand-name{font-family:var(--font-display);font-weight:700;color:#fff;margin:18px 0 6px;}
+.footer-brand-role{font-size:13.5px;color:var(--ink-muted);margin-bottom:22px;}
+.footer-brand-lockup{display:flex;align-items:center;gap:13px;margin-bottom:24px;}
+.footer-brand-lockup .brand-mark{flex:0 0 40px;width:40px;height:40px;}
+.footer-brand-lockup>div{min-width:0;}
+.footer-brand-lockup .footer-brand-name{margin:0 0 3px;line-height:1.2;}
+.footer-brand-lockup .footer-brand-role{margin:0;line-height:1.35;color:rgba(230,237,255,.72);}
+.footer-col h3{font-family:var(--font-display);font-size:14px;color:#fff;margin-bottom:16px;}
+.footer-col a{display:block;color:var(--ink-muted);font-size:14px;margin-bottom:12px;transition:color .2s ease;}
+.footer-col a:hover{color:var(--cyan);}
+.footer-bottom{position:relative;z-index:1;display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;padding:26px 0;border-top:1px solid var(--line);font-size:12.5px;color:var(--ink-faint);}
+
+
+
+@media (prefers-reduced-motion: reduce){
+  .hero-arc,.hero-glow-core{animation:none;}
+  .reveal,.char-parent .word,.char{opacity:1 !important;filter:none !important;transform:none !important;transition:none !important;}
+  .btn-char-inner{transition:none !important;}
+}
+
+@media (max-width:960px){
+  .hero-grid{grid-template-columns:minmax(0,1fr);grid-template-rows:auto auto;height:auto;min-height:auto;}
+  .hero-copy{min-width:0;padding-bottom:0;}
+  .hero-portrait{order:0;width:100%;margin:28px 0 0;overflow:hidden;}
+  .hero-portrait img{max-width:100%;height:auto;align-self:flex-end;}
+  .about-grid,.services-grid,.booking-grid{grid-template-columns:1fr;gap:36px;}
+  .footer-grid{grid-template-columns:1fr 1fr;}
+  .reasons-grid{grid-template-columns:1fr 1fr;}
+  .proof-track{height:170vh;}
+  .proof-static-grid{grid-template-columns:1fr;gap:44px;}
+  .proof-static-photos{min-height:460px;}
+  .roadmap-track{width:calc(100% - 48px);}
+  .roadmap-steps{flex-direction:column;gap:0;}
+  .roadmap-view[data-roadmap-view="1"] .roadmap-steps{max-width:none;}
+  .rstep{width:100%;max-width:none;flex:none;display:grid;grid-template-columns:46px minmax(0,1fr);grid-template-rows:auto auto auto;text-align:left;column-gap:18px;row-gap:4px;align-items:start;padding:14px 0;}
+  .rstep-label{grid-column:2;grid-row:1;}
+  .rstep-dot{grid-column:1;grid-row:1/4;width:46px;height:46px;margin:0;}
+  .rstep-body h3{grid-column:2;grid-row:2;max-width:none;}
+  .rstep-body p{grid-column:2;grid-row:3;max-width:38ch;}
+  .roadmap-line{display:none;}
+  .main-nav{display:none;}
+}
+@media (max-width:640px){
+  section{padding:82px 0;}
+  .wrap{padding:0 20px;}
+  .hero{padding-top:92px;}
+  .hero-actions{flex-direction:column;align-items:stretch;}
+  .hero-actions .btn{justify-content:center;}
+  .hero-portrait{min-height:360px;}
+  .hero-stats{width:100%;justify-content:space-between;}
+  .hero-stat{padding:0 14px;min-width:0;}
+  .hero-stat:last-child{padding-right:0;}
+  .hero-stat strong{font-size:27px;}
+  .hero-stat span{font-size:12px;white-space:normal;}
+  .hero-stat:last-child strong{color:#fff;}
+  .hero-stat:last-child span{color:rgba(255,255,255,.78);}
+  .proof-track{height:150vh;}
+  .roadmap-sec,.proof-static,.booking-sec{padding:76px 0;}
+  .roadmap-track{width:calc(100% - 40px);}
+  .proof-static-photos{min-height:360px;}
+  .proof-static-facts{gap:12px;}
+  .reviews-sec{padding:82px 0;}
+  .reviews-carousel{gap:10px;}
+  .reviews-carousel-video{width:min(72vw,300px);}
+  .reviews-carousel-arrow{width:34px;height:34px;}
+  .booking-panel{padding:24px 20px;}
+  .form-row{grid-template-columns:1fr;gap:0;}
+  .footer-grid{grid-template-columns:1fr;gap:30px;}
+}
+</style>
+</head>
+<body>
+<a class="skip-link" href="#top">Перейти к&nbsp;содержанию</a>
+
+
+<header class="site-header">
+  <div class="wrap header-row">
+    <a class="brand" href="#top">
+      <span class="brand-mark" aria-hidden="true">Т</span>
+      <span class="brand-text">Трейгер<br><small>сосудистый хирург</small></span>
+    </a>
+    <nav class="main-nav" aria-label="Основная навигация">
+      <a href="index.html" aria-current="page">Главная</a>
+      <a href="about.html">Обо мне</a>
+      <a href="contacts.html">Контакты</a>
+    </nav>
+    <a class="btn btn-outline" href="#booking">
+      <span>Записаться</span>
+      <span class="btn-arrow" aria-hidden="true">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M8 7h9v9"/></svg>
+      </span>
+    </a>
+  </div>
+</header>
+
+<main id="top">
+
+  
+  <section class="hero" id="heroSection">
+    <div class="hero-arc" aria-hidden="true"></div>
+    <div class="hero-glow-core" aria-hidden="true"></div>
+    <svg class="hero-orb-lines" viewBox="0 0 1000 850" preserveAspectRatio="none" aria-hidden="true">
+      <defs>
+        <linearGradient id="heroLineGrad" gradientUnits="userSpaceOnUse" x1="0" y1="820" x2="1000" y2="90">
+          <stop offset="0%" stop-color="#B8F3FC" stop-opacity="0.95"/>
+          <stop offset="30%" stop-color="#5FD8F5" stop-opacity="0.55"/>
+          <stop offset="100%" stop-color="#3D63D6" stop-opacity="0.1"/>
+        </linearGradient>
+      </defs>
+      <path d="M-20 760 C170 610 290 620 420 470 C570 300 690 330 940 90" style="animation-delay:0s"/>
+      <path d="M0 773 C187 623 307 630 437 480 C583 313 707 340 947 110" style="animation-delay:.08s"/>
+      <path d="M7 787 C203 637 323 640 453 490 C597 327 723 350 953 130" style="animation-delay:.16s"/>
+      <path d="M40 800 C220 650 340 650 470 500 C610 340 740 360 960 150" style="animation-delay:.24s"/>
+      <path d="M87 807 C247 667 360 663 490 517 C630 360 757 377 967 183" style="animation-delay:.32s"/>
+      <path d="M133 813 C273 683 380 677 510 533 C650 380 773 393 973 217" style="animation-delay:.4s"/>
+      <path d="M180 820 C300 700 400 690 530 550 C670 400 790 410 980 250" style="animation-delay:.48s"/>
+      <path d="M247 820 C357 700 440 670 567 540 C700 403 807 403 983 277" style="animation-delay:.56s"/>
+      <path d="M313 820 C413 700 480 650 603 530 C730 407 823 397 987 303" style="animation-delay:.64s"/>
+      <path d="M380 820 C470 700 520 630 640 520 C760 410 840 390 990 330" style="animation-delay:.72s"/>
+      <path d="M420 820 C507 700 550 637 663 533 C773 433 853 410 997 357" style="animation-delay:.8s"/>
+      <path d="M460 820 C543 700 580 643 687 547 C787 457 867 430 1003 383" style="animation-delay:.88s"/>
+      <path d="M500 820 C580 700 610 650 710 560 C800 480 880 450 1010 410" style="animation-delay:.96s"/>
+    </svg>
+    <div class="hero-noise" aria-hidden="true"></div>
+    <div class="wrap hero-grid">
+      <div class="hero-copy">
+        <p class="eyebrow reveal">Сосудистая хирургия · Флебология · Москва</p>
+        <h1 class="hero-h1 reveal">
+          <span class="line c-navy">Вены, <span style="white-space:nowrap;">артерии, аорта —</span></span>
+          <span class="line c-blue">комплексный подход к&nbsp;лечению сосудов</span>
+        </h1>
+        <p class="hero-sub reveal">Сосудистый хирург с&nbsp;опытом 4000+ операций. Решает вопрос об&nbsp;операции без&nbsp;лишних обследований и&nbsp;очередей — очно или дистанционно, по&nbsp;фото и&nbsp;снимкам КТ.</p>
+        <div class="hero-cta-row reveal">
+          <a class="btn btn-solid btn-lg" href="#booking">
+            <span>Записаться на&nbsp;приём</span>
+            <span class="btn-arrow" aria-hidden="true">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M8 7h9v9"/></svg>
+            </span>
+          </a>
+          <a class="btn-play" href="#about">
+            <span class="btn-play-icon" aria-hidden="true">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+            </span>
+            <span class="btn-play-label">Обо мне</span>
+          </a>
+        </div>
+        <div class="hero-stats reveal">
+          <div class="hero-stat"><strong>4000+</strong><span>операций</span></div>
+          <div class="hero-stat"><strong>10+</strong><span>лет опыта</span></div>
+          <div class="hero-stat"><strong>3</strong><span>страны практики</span></div>
+        </div>
+      </div>
+      <div class="hero-portrait reveal">
+        <img src="assets/images/doctor-portrait-nobg.png" alt="Трейгер Георгий Александрович, сосудистый хирург" width="854" height="1280">
+        <div class="hero-rating-badge">
+          <div class="hero-rating-badge-top"><strong>5.0</strong><span class="stars" aria-hidden="true">★★★★★</span></div>
+          <span>на&nbsp;ПроДокторов</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  
+  <section class="about" id="about">
+    <div class="about-orb" aria-hidden="true"></div>
+    <div class="wrap about-grid">
+      <div class="about-frame reveal" data-about-carousel>
+        <div class="about-frame-ring" aria-hidden="true"></div>
+        <div class="about-photo-track" data-about-track>
+          <div class="about-photo-slide"><img src="assets/images/about/portrait-badge.jpg" alt="На операции" loading="lazy"></div>
+          <div class="about-photo-slide"><img src="assets/images/about/new/surgeon-or-light.jpg" alt="Георгий Трейгер во время работы в операционной" loading="lazy"></div>
+          <div class="about-photo-slide"><img src="assets/images/about/new/surgeon-preparing.jpg" alt="Георгий Трейгер готовится к операции" loading="lazy"></div>
+          <div class="about-photo-slide"><img src="assets/images/about/new/surgeon-closeup.jpg" alt="Георгий Трейгер в операционной" loading="lazy"></div>
+        </div>
+        <button class="about-photo-arrow about-photo-prev" type="button" aria-label="Предыдущее фото" data-about-prev>‹</button>
+        <button class="about-photo-arrow about-photo-next" type="button" aria-label="Следующее фото" data-about-next>›</button>
+        <div class="about-photo-counter"><span data-about-current>1</span>/<span data-about-total>5</span></div>
+      </div>
+      <div class="about-copy reveal">
+        <p class="eyebrow">Обо мне</p>
+        <h2 class="reveal">Врач, который остаётся на&nbsp;связи</h2>
+        <p>Меня зовут Георгий Александрович Трейгер. Больше 10 лет оперирую сосуды — от&nbsp;варикоза до&nbsp;критической ишемии и&nbsp;аневризм аорты, свыше 4000 реконструкций. Стажировки в&nbsp;Нидерландах, Великобритании и&nbsp;Израиле научили одному: когда счёт идёт на&nbsp;часы, решение нужно принимать быстро. Поэтому отвечаю в&nbsp;мессенджерах лично — очно или дистанционно, но всегда за&nbsp;один визит.</p>
+        <a class="btn btn-outline" href="about.html">
+          <span>Подробнее</span>
+          <span class="btn-arrow" aria-hidden="true">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M8 7h9v9"/></svg>
+          </span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  
+  <section class="roadmap-sec" id="paths">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <p class="eyebrow">Как принимается решение</p>
+        <h2 class="reveal">Два пути к&nbsp;одному и&nbsp;тому же — быстрому решению</h2>
+        <p>Очно — осмотр и&nbsp;диагностика за&nbsp;один визит. Онлайн — предварительное решение по&nbsp;фото и&nbsp;снимкам КТ.</p>
+      </div>
+      <div class="path-switcher reveal" data-switcher>
+        <span class="path-switcher-thumb" data-switcher-thumb aria-hidden="true"></span>
+        <button class="path-switcher-btn is-active" type="button" data-switch="0">Очно</button>
+        <button class="path-switcher-btn" type="button" data-switch="1">Онлайн</button>
+      </div>
+    </div>
+
+      <div class="roadmap-track reveal">
+        <div class="roadmap-line" aria-hidden="true"></div>
+        <div class="roadmap-view is-active" data-roadmap-view="0">
+          <div class="roadmap-steps">
+            <div class="rstep">
+              <span class="rstep-dot" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg></span>
+              <div class="rstep-body"><span class="rstep-label">Шаг 1</span><h3>Запись на&nbsp;приём</h3><p>Telegram, ВКонтакте, MAX или телефон</p></div>
+            </div>
+            <div class="rstep">
+              <span class="rstep-dot" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg></span>
+              <div class="rstep-body"><span class="rstep-label">Шаг 2</span><h3>Осмотр и&nbsp;УЗДГ</h3><p>Личный осмотр и&nbsp;допплерография</p></div>
+            </div>
+            <div class="rstep">
+              <span class="rstep-dot" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M12 8v8M8 12h8"/></svg></span>
+              <div class="rstep-body"><span class="rstep-label">Шаг 3</span><h3>Перевязка ран</h3><p>Если требуется, на&nbsp;месте</p></div>
+            </div>
+            <div class="rstep">
+              <span class="rstep-dot" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7V5a2 2 0 0 1 2-2h2M17 3h2a2 2 0 0 1 2 2v2M21 17v2a2 2 0 0 1-2 2h-2M7 21H5a2 2 0 0 1-2-2v-2"/><circle cx="12" cy="12" r="3"/></svg></span>
+              <div class="rstep-body"><span class="rstep-label">Шаг 4</span><h3>Анализ снимков КТ</h3><p>Разбор вместе с&nbsp;вами</p></div>
+            </div>
+            <div class="rstep">
+              <span class="rstep-dot" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M8 12l3 3 5-6"/></svg></span>
+              <div class="rstep-body"><span class="rstep-label">Шаг 5</span><h3>Решение об&nbsp;операции</h3><p>Чёткий план: оперируем или наблюдаем</p></div>
+            </div>
+          </div>
+        </div>
+        <div class="roadmap-view" data-roadmap-view="1" hidden>
+          <div class="roadmap-steps">
+            <div class="rstep">
+              <span class="rstep-dot" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg></span>
+              <div class="rstep-body"><span class="rstep-label">Шаг 1</span><h3>Фото и&nbsp;файл КТ</h3><p>Отправляете в&nbsp;мессенджер</p></div>
+            </div>
+            <div class="rstep">
+              <span class="rstep-dot" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.3-4.3"/></svg></span>
+              <div class="rstep-body"><span class="rstep-label">Шаг 2</span><h3>Разбор случая</h3><p>Врач лично изучает материалы</p></div>
+            </div>
+            <div class="rstep">
+              <span class="rstep-dot" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-4.6 7.5 8.38 8.38 0 0 1-3.8.9 8.5 8.5 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 8.5-8.5 8.48 8.48 0 0 1 8.5 8z"/><path d="M8 11l2.5 2.5L16 8"/></svg></span>
+              <div class="rstep-body"><span class="rstep-label">Шаг 3</span><h3>Решение дистанционно</h3><p>Ответ и&nbsp;план действий</p></div>
+            </div>
+          </div>
+        </div>
+      </div>
+  </section>
+
+  
+  <section class="services-sec" id="services">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <p class="eyebrow">С чем я помогаю</p>
+        <h2 class="reveal">Основные направления работы</h2>
+      </div>
+      <div class="services-grid reveal">
+        <ul class="svc-list" data-service-list>
+          <li class="is-active" data-service="0" data-img="assets/images/services/gangrene-foot.png">
+            <button class="svc-trigger" type="button"><span class="svc-index">01</span><span class="svc-title">Гангрена и&nbsp;трофические язвы</span></button>
+            <div class="svc-content"><div class="svc-content-inner"><p>Своевременное лечение ран и&nbsp;восстановление кровотока при&nbsp;критической ишемии — приоритет №1 при&nbsp;угрозе ампутации.</p></div></div>
+          </li>
+          <li data-service="1" data-img="assets/images/services/leg-artery.png">
+            <button class="svc-trigger" type="button"><span class="svc-index">02</span><span class="svc-title">Атеросклероз артерий, диабетическая стопа</span></button>
+            <div class="svc-content"><div class="svc-content-inner"><p>Восстановление проходимости артерий нижних конечностей при&nbsp;диабетической стопе и&nbsp;атеросклерозе.</p></div></div>
+          </li>
+          <li data-service="2" data-img="assets/images/services/aorta-chest.png">
+            <button class="svc-trigger" type="button"><span class="svc-index">03</span><span class="svc-title">Аневризма аорты — грудной и&nbsp;брюшной отдел</span></button>
+            <div class="svc-content"><div class="svc-content-inner"><p>Плановое и&nbsp;экстренное лечение аневризм грудного и&nbsp;брюшного отдела аорты.</p></div></div>
+          </li>
+          <li data-service="3" data-img="assets/images/services/carotid-neck.png">
+            <button class="svc-trigger" type="button"><span class="svc-index">04</span><span class="svc-title">Атеросклероз сонных артерий, профилактика инсульта</span></button>
+            <div class="svc-content"><div class="svc-content-inner"><p>Профилактика инсульта: оценка и&nbsp;коррекция атеросклероза сонных артерий.</p></div></div>
+          </li>
+          <li data-service="4" data-img="assets/images/services/varicose-foot.png">
+            <button class="svc-trigger" type="button"><span class="svc-index">05</span><span class="svc-title">Варикозная болезнь — лазер ЭВЛК</span></button>
+            <div class="svc-content"><div class="svc-content-inner"><p>Лазерная коагуляция вен (ЭВЛК) — без&nbsp;разрезов, амбулаторно.</p></div></div>
+          </li>
+          <li data-service="5" data-img="assets/images/services/dialysis-arm.png">
+            <button class="svc-trigger" type="button"><span class="svc-index">06</span><span class="svc-title">Сосудистый доступ для&nbsp;диализа</span></button>
+            <div class="svc-content"><div class="svc-content-inner"><p>Формирование и&nbsp;наблюдение сосудистого доступа для&nbsp;программного гемодиализа.</p></div></div>
+          </li>
+        </ul>
+        <div class="svc-display">
+          <img data-service-photo src="assets/images/services/gangrene-foot.png" alt="">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  
+  <section class="proof" id="proof">
+    <div class="proof-track" data-proof-track>
+      <div class="proof-sticky">
+        <div class="proof-frame" data-proof-frame>
+          <div class="proof-grid" data-proof-grid>
+            <div class="proof-col" data-proof-col></div>
+            <div class="proof-col" data-proof-col></div>
+            <div class="proof-col" data-proof-col></div>
+            <div class="proof-col" data-proof-col></div>
+          </div>
+          <div class="proof-payoff" data-proof-payoff>
+            <div class="proof-payoff-panel">
+              <div class="odometer" data-odometer data-target="4000"></div>
+              <p class="fan-caption">операций</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="wrap reasons-grid reveal">
+      <div class="reason-card">
+        <div class="reason-card-top"><span class="reason-label">Стаж</span></div>
+        <div class="reason-number">10+</div><div class="reason-caption">лет практического опыта</div>
+      </div>
+      <div class="reason-card">
+        <div class="reason-card-top"><span class="reason-label">Выполнено</span></div>
+        <div class="reason-number">4000+</div><div class="reason-caption">сосудистых реконструкций</div>
+      </div>
+      <div class="reason-card">
+        <div class="reason-card-top"><span class="reason-label">Публикации</span></div>
+        <div class="reason-number">40+</div><div class="reason-caption">научных публикаций</div>
+      </div>
+      <div class="reason-card">
+        <div class="reason-card-top"><span class="reason-label">Опыт</span></div>
+        <div class="reason-number">Международный</div><div class="reason-caption">Нидерланды, Великобритания, Израиль</div>
+      </div>
+    </div>
+  </section>
+
+  
+  <section class="reviews-sec">
+    <div class="wrap reveal">
+      <div class="reviews-carousel-head">
+        <p class="eyebrow">Отзывы</p>
+        <h2>Пациенты о&nbsp;лечении</h2>
+        <a class="reviews-view-all" href="https://prodoctorov.ru/moskva/vrach/581104-tryayger/otzivi/#otzivi" target="_blank" rel="noopener">Смотреть все отзывы на ProDoctorov ↗</a>
+      </div>
+      <div class="reviews-carousel" data-carousel>
+        <div class="reviews-peek-group reviews-peek-group-left">
+          <button class="reviews-peek reviews-peek-outer" type="button" data-peek="-3" data-index="7" aria-label="Отзыв"><img src="assets/video/review-08-poster.jpg" alt="" loading="lazy"></button>
+          <button class="reviews-peek" type="button" data-peek="-2" data-index="8" aria-label="Отзыв"><img src="assets/video/review-09-poster.jpg" alt="" loading="lazy"></button>
+          <button class="reviews-peek" type="button" data-peek="-1" data-index="9" aria-label="Отзыв"><img src="assets/video/review-10-poster.jpg" alt="" loading="lazy"></button>
+        </div>
+        <button class="reviews-carousel-arrow reviews-carousel-arrow-prev" type="button" data-dir="-1" aria-label="Предыдущий отзыв">‹</button>
+        <div class="reviews-carousel-video">
+          <video id="storyMain" preload="metadata" playsinline poster="assets/video/review-01-poster.jpg">
+            <source data-story-source src="assets/video/review-01.mp4" type="video/mp4">
+            <track data-story-track kind="subtitles" src="assets/video/review-01.vtt" srclang="ru" label="Русский" default>
+          </video>
+          <button class="reviews-play-btn" type="button" data-play-overlay aria-label="Смотреть видео">
+            <svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true"><path d="M8 5.5v13l11-6.5z" fill="currentColor"/></svg>
+          </button>
+        </div>
+        <button class="reviews-carousel-arrow reviews-carousel-arrow-next" type="button" data-dir="1" aria-label="Следующий отзыв">›</button>
+        <div class="reviews-peek-group reviews-peek-group-right">
+          <button class="reviews-peek" type="button" data-peek="1" data-index="1" aria-label="Отзыв"><img src="assets/video/review-02-poster.jpg" alt="" loading="lazy"></button>
+          <button class="reviews-peek" type="button" data-peek="2" data-index="2" aria-label="Отзыв"><img src="assets/video/review-03-poster.jpg" alt="" loading="lazy"></button>
+          <button class="reviews-peek reviews-peek-outer" type="button" data-peek="3" data-index="3" aria-label="Отзыв"><img src="assets/video/review-04-poster.jpg" alt="" loading="lazy"></button>
+        </div>
+      </div>
+      <p class="reviews-carousel-caption" data-carousel-caption>«Муж снова ходит без&nbsp;трости и&nbsp;сам водит машину»</p>
+      <p class="reviews-carousel-count" data-carousel-count>01 / 10</p>
+    </div>
+  </section>
+
+  
+  <section class="booking-sec dark" id="booking">
+    <div class="wrap booking-grid reveal">
+      <div class="booking-info">
+        <p class="eyebrow">Заявка</p>
+        <h2 class="reveal">Оставьте заявку — отвечаю сам</h2>
+        <p>Опишите ситуацию коротко, и&nbsp;я отвечу с&nbsp;ближайшим свободным временем очно или онлайн.</p>
+        <div class="booking-urgent">
+          <strong>Случай срочный?</strong>
+          <p>Угроза конечности, кровотечение, острая боль — не&nbsp;ждите форму. Пишите сразу в&nbsp;Telegram: срочные сообщения смотрю в&nbsp;приоритете, лично.</p>
+          <a class="booking-urgent-link" href="https://t.me/dr_treiger" target="_blank" rel="noopener">Написать в Telegram <span aria-hidden="true">→</span></a>
+        </div>
+      </div>
+      <div class="booking-panel">
+        <form id="bookingForm">
+          <p class="form-hint">Заполните форму — я&nbsp;свяжусь с&nbsp;вами в&nbsp;течение рабочего дня.</p>
+          <div class="form-row">
+            <div class="form-group"><label for="bf-name">Имя</label><input type="text" id="bf-name" required></div>
+            <div class="form-group"><label for="bf-phone">Телефон</label><input type="tel" id="bf-phone" required></div>
+          </div>
+          <div class="form-group"><label for="bf-message">Комментарий <span class="form-optional">(необязательно)</span></label><textarea id="bf-message" rows="3"></textarea></div>
+          <div class="form-group">
+            <label for="bf-photo">Фото проблемного участка <span class="form-optional">(необязательно)</span></label>
+            <label class="file-attach" for="bf-photo" id="fileAttachLabel">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21.44 11.05l-9.19 9.19a6 6 0 0 1-8.49-8.49l9.19-9.19a4 4 0 0 1 5.66 5.66l-9.2 9.19a2 2 0 0 1-2.83-2.83l8.49-8.48"/></svg>
+              <span class="file-attach-text" id="fileAttachText">Прикрепить фото</span>
+            </label>
+            <input type="file" id="bf-photo" accept="image
+    'assets/images/proof/patient-01.jpg',
+    'assets/images/proof/patient-02.jpg',
+    'assets/images/proof/patient-03.jpg',
+    'assets/images/proof/patient-04.jpg',
+    'assets/images/proof/patient-05.jpg',
+    'assets/images/proof/patient-06.jpg',
+    'assets/images/proof/patient-07.jpg',
+    'assets/images/proof/patient-08.jpg',
+    'assets/images/proof/patient-09.jpg',
+    'assets/images/proof/patient-10.jpg',
+    'assets/images/proof/patient-11.jpg',
+    'assets/images/proof/patient-12.jpg',
+    'assets/images/proof/patient-13.jpg',
+    'assets/images/proof/patient-14.jpg'
+  ];
+  const proofCols = Array.from(proofTrack.querySelectorAll('[data-proof-col]'));
+  const REPEAT_COUNT = 6; 
+  proofCols.forEach((col, i) => {
+    const subset = GALLERY_IMAGES.filter((_, idx) => idx % proofCols.length === i);
+    let repeated = [];
+    for (let r = 0; r < REPEAT_COUNT; r++) repeated = repeated.concat(subset);
+    repeated.forEach((src) => {
+      const card = document.createElement('div');
+      card.className = 'proof-card';
+      const img = document.createElement('img');
+      img.src = src;
+      
+      img.alt = '';
+      card.appendChild(img);
+      col.appendChild(card);
+    });
+  });
+
+  const proofFrame = proofTrack.querySelector('[data-proof-frame]');
+  const proofGrid = proofTrack.querySelector('[data-proof-grid]');
+  const proofPayoff = proofTrack.querySelector('[data-proof-payoff]');
+  const COLUMN_RANGES = [[0, -40], [-40, 10], [0, -40], [-30, 20]];
+
+  const odometerEl = proofPayoff.querySelector('[data-odometer]');
+  const targetStr = odometerEl.dataset.target;
+  const REPEATS = 3;
+  const strips = [];
+  targetStr.split('').forEach((digit, i) => {
+    const col = document.createElement('div');
+    col.className = 'odometer-digit';
+    const strip = document.createElement('div');
+    strip.className = 'odometer-strip';
+    for (let r = 0; r < REPEATS; r++) {
+      for (let d = 0; d <= 9; d++) {
+        const span = document.createElement('span');
+        span.textContent = String(d);
+        strip.appendChild(span);
+      }
+    }
+    col.appendChild(strip);
+    odometerEl.appendChild(col);
+    const landingIndex = (REPEATS - 1) * 10 + Number(digit);
+    strips.push({ strip, landingIndex, delay: i * 90 });
+  });
+  const plus = document.createElement('span');
+  plus.className = 'odometer-plus';
+  plus.textContent = '+';
+  odometerEl.appendChild(plus);
+
+  let countStarted = false;
+  function rollOdometer() {
+    strips.forEach(({ strip, landingIndex, delay }) => {
+      strip.style.transitionDelay = `${delay}ms`;
+      strip.style.transform = `translateY(-${landingIndex}em)`;
+    });
+  }
+
+  const proofClamp = (v, min, max) => Math.max(min, Math.min(max, v));
+  const proofLerp = (a, b, t) => a + (b - a) * t;
+  const proofReducedMotion = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const proofCompact = matchMedia('(max-width: 640px)').matches;
+
+  function updateProof() {
+    const rect = proofTrack.getBoundingClientRect();
+    const total = rect.height - window.innerHeight;
+    const p = proofClamp(total > 0 ? -rect.top / total : 0, 0, 1);
+
+    if (!proofReducedMotion) {
+      const p1 = proofClamp(p / 0.15, 0, 1);
+      proofFrame.style.transform = `scale(${proofLerp(0.9, 1, p1)}, ${proofLerp(0.8, 1, p1)})`;
+      proofFrame.style.borderRadius = `${proofLerp(48, 0, p1)}px`;
+
+      const p2 = proofClamp((p - (proofCompact ? 0.06 : 0.15)) / (proofCompact ? 0.94 : 0.85), 0, 1);
+      const rx = proofLerp(proofCompact ? 12 : 25, 4, p2);
+      const ry = proofLerp(proofCompact ? -18 : -45, -8, p2);
+      const rz = proofLerp(proofCompact ? 7 : 15, 2, p2);
+      const tz = proofLerp(proofCompact ? -180 : -800, 0, p2);
+      proofGrid.style.transform = `perspective(1200px) rotateX(${rx}deg) rotateY(${ry}deg) rotateZ(${rz}deg) translateZ(${tz}px)`;
+      proofCols.forEach((col, i) => {
+        const [from, to] = COLUMN_RANGES[i % COLUMN_RANGES.length];
+        col.style.transform = `translateY(${proofLerp(from, to, p2)}%)`;
+      });
+    }
+
+    const payoffStart = proofCompact ? 0.58 : 0.72;
+    const p3 = proofClamp((p - payoffStart) / (1 - payoffStart), 0, 1);
+    proofPayoff.style.opacity = String(p3);
+    proofPayoff.style.transform = `translateY(${proofLerp(20, 0, p3)}px)`;
+
+    if (p3 > 0.7 && !countStarted) {
+      countStarted = true;
+      rollOdometer();
+    }
+  }
+
+  let proofTicking = false;
+  window.addEventListener('scroll', () => {
+    if (!proofTicking) {
+      proofTicking = true;
+      requestAnimationFrame(() => { updateProof(); proofTicking = false; });
+    }
+  }, { passive: true });
+  updateProof();
+  };
+  if ('requestIdleCallback' in window) {
+    requestIdleCallback(runProofSetup, { timeout: 1500 });
+  } else {
+    setTimeout(runProofSetup, 150);
+  }
+}
+const aboutCarousel = document.querySelector('[data-about-carousel]');
+if (aboutCarousel) {
+  const track = aboutCarousel.querySelector('[data-about-track]');
+  const slides = [...track.children];
+  const prevBtn = aboutCarousel.querySelector('[data-about-prev]');
+  const nextBtn = aboutCarousel.querySelector('[data-about-next]');
+  const currentEl = aboutCarousel.querySelector('[data-about-current]');
+  const totalEl = aboutCarousel.querySelector('[data-about-total]');
+  let index = 0, timer;
+  totalEl.textContent = String(slides.length);
+  function renderAbout() { track.style.transform = `translateX(-${index * 100}%)`; currentEl.textContent = String(index + 1); }
+  function goAbout(step) { index = (index + step + slides.length) % slides.length; renderAbout(); }
+  function restartAbout() { clearInterval(timer); timer = setInterval(() => goAbout(1), 4500); }
+  prevBtn.addEventListener('click', () => { goAbout(-1); restartAbout(); });
+  nextBtn.addEventListener('click', () => { goAbout(1); restartAbout(); });
+  renderAbout();
+  restartAbout();
+}
+const reviewsCarousel = document.querySelector('[data-carousel]');
+if (reviewsCarousel) {
+  const REVIEWS = [
+    ['review-01', '«Муж снова ходит без\u00a0трости и\u00a0сам водит машину»'],
+    ['review-02', '«Раньше ходил 50 метров, а\u00a0сейчас — больше километра»'],
+    ['review-03', '«Сейчас прохожу в\u00a0день до\u00a011 тысяч шагов — и\u00a0никаких проблем с\u00a0кровотоком»'],
+    ['review-04', '«После операции хожу без\u00a0хромоты и\u00a0не устаю»'],
+    ['review-05', '«Он подарил мне просто вторую жизнь»'],
+    ['review-06', '«Очень болела нога — теперь всё в\u00a0порядке, мы очень благодарны»'],
+    ['review-07', '«Рассказал ему о\u00a0своих проблемах — он всё решил»'],
+    ['review-08', '«Мне стало намного лучше, я очень благодарна»'],
+    ['review-09', '«Сначала ходил с\u00a0тростью — сейчас уже без\u00a0неё»'],
+    ['review-10', '«Грозила ампутация — сейчас я снова чувствую себя человеком»'],
+  ].map(([name, caption]) => ({ src: `assets/video/${name}.mp4`, poster: `assets/video/${name}-poster.jpg`, vtt: `assets/video/${name}.vtt`, caption }));
+  const mainVideo = document.getElementById('storyMain');
+  const mainVideoWrap = mainVideo.closest('.reviews-carousel-video');
+  const playOverlay = mainVideoWrap.querySelector('[data-play-overlay]');
+  const mainSource = mainVideo.querySelector('[data-story-source]');
+  const mainTrack = mainVideo.querySelector('[data-story-track]');
+  const countEl = document.querySelector('[data-carousel-count]');
+  const captionEl = document.querySelector('[data-carousel-caption]');
+  const arrows = [...reviewsCarousel.querySelectorAll('.reviews-carousel-arrow')];
+  const peeks = [...reviewsCarousel.querySelectorAll('.reviews-peek')];
+  const pad2 = n => String(n).padStart(2, '0');
+  const wrap = n => ((n % REVIEWS.length) + REVIEWS.length) % REVIEWS.length;
+  let current = 0;
+  function render() {
+    const review = REVIEWS[current];
+    mainVideo.pause();
+    mainVideoWrap.classList.remove('is-playing');
+    mainVideo.controls = false;
+    mainSource.src = review.src;
+    mainVideo.poster = review.poster;
+    mainTrack.src = review.vtt;
+    mainVideo.load();
+    captionEl.textContent = review.caption;
+    countEl.textContent = `${pad2(current + 1)} / ${pad2(REVIEWS.length)}`;
+    peeks.forEach(peek => {
+      const idx = wrap(current + Number(peek.dataset.peek));
+      peek.dataset.index = idx;
+      peek.querySelector('img').src = REVIEWS[idx].poster;
+      peek.setAttribute('aria-label', REVIEWS[idx].caption);
+    });
+  }
+  arrows.forEach(arrow => {
+    arrow.addEventListener('click', () => { current = wrap(current + Number(arrow.dataset.dir)); render(); });
+  });
+  peeks.forEach(peek => {
+    peek.addEventListener('click', () => { current = Number(peek.dataset.index); render(); });
+  });
+  playOverlay.addEventListener('click', () => { mainVideo.controls = true; mainVideo.play(); });
+  mainVideo.addEventListener('play', () => mainVideoWrap.classList.add('is-playing'));
+  render();
+}
+const photoInput = document.getElementById('bf-photo');
+const fileAttachText = document.getElementById('fileAttachText');
+const fileAttachLabel = document.getElementById('fileAttachLabel');
+if (photoInput && fileAttachText && fileAttachLabel) {
+  photoInput.addEventListener('change', () => {
+    const n = photoInput.files.length;
+    if (n === 0) {
+      fileAttachText.textContent = 'Прикрепить фото';
+      fileAttachLabel.classList.remove('has-file');
+    } else if (n === 1) {
+      fileAttachText.textContent = photoInput.files[0].name;
+      fileAttachLabel.classList.add('has-file');
+    } else {
+      fileAttachText.textContent = `Выбрано файлов: ${n}`;
+      fileAttachLabel.classList.add('has-file');
+    }
+  });
+}
+const bookingForm = document.getElementById('bookingForm');
+if (bookingForm) {
+  bookingForm.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const btn = bookingForm.querySelector('.form-submit span');
+    const original = btn.textContent;
+    btn.textContent = 'Отправлено ✓';
+    setTimeout(() => { btn.textContent = original; }, 2000);
+  });
+}
+</script>
+</body>
+</html>
+
