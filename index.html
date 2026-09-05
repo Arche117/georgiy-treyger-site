@@ -18,7 +18,9 @@
   --cyan-soft:#BFEFFB;
   --ink:#0F1B3D;
   --ink-muted:#68729A;
-  --ink-faint:var(--ink-muted); 
+  --ink-faint:var(--ink-muted); /* was #98A1C2 — ~2.45:1 against --bg, well under WCAG AA's
+    4.5:1 for normal text, and used on real labels (step labels, service index, form-optional,
+    faq index, footer). Aliased to --ink-muted (same fix already applied in css/styles.css). */
   --line:rgba(15,27,61,0.10);
   --panel:#FFFFFF;
   --panel-tint:#F0F4FF;
@@ -50,24 +52,25 @@ section{position:relative;padding:120px 0;overflow:hidden;}
 .section-head h2{font-size:clamp(1.9rem,3.2vw,2.7rem);font-weight:700;color:var(--ink);}
 .section-head p{margin-top:16px;font-size:16px;color:var(--ink-muted);max-width:56ch;}
 
-
+/* ---- reveal ---- */
 .reveal{opacity:0;filter:blur(2px);transform:translateY(12px);transition:opacity .45s cubic-bezier(.16,1,.3,1),filter .45s cubic-bezier(.16,1,.3,1),transform .45s cubic-bezier(.16,1,.3,1);}
 .reveal.is-visible{opacity:1;filter:blur(0);transform:translateY(0);}
 
-
+/* Heading char-reveal overrides the block-level reveal above: the heading
+   itself snaps to visible immediately, its per-character spans animate instead. */
 .reveal.char-parent{opacity:1;filter:none;transform:none;}
 .word{display:inline-block;}
 .char{display:inline-block;opacity:0;filter:blur(3px) brightness(.72);transition:opacity .3s ease,filter .3s ease;white-space:pre;}
 .char-parent.is-visible .char{opacity:1;filter:blur(0) brightness(1);}
 
-
+/* Button label roll: on hover each character rolls up to a duplicate copy underneath */
 .btn-label{display:inline-flex;height:1.2em;line-height:1.2;vertical-align:top;}
 .btn-char{overflow:hidden;height:1.2em;display:inline-block;}
 .btn-char-inner{display:flex;flex-direction:column;transition:transform .5s cubic-bezier(.65,0,.35,1);}
 .btn-char-line{height:1.2em;line-height:1.2;display:block;white-space:pre;}
 .btn:hover .btn-char-inner{transform:translateY(-1.2em);}
 
-
+/* ---- buttons ---- */
 .btn{display:inline-flex;align-items:center;gap:10px;font-family:var(--font-body);font-weight:600;font-size:15px;padding:15px 26px;border-radius:999px;white-space:nowrap;border:none;cursor:pointer;transition:transform .25s cubic-bezier(.16,1,.3,1),background .25s ease,border-color .25s ease,box-shadow .25s ease;}
 .btn-lg{padding:20px 36px;font-size:16.5px;}
 .btn:hover{transform:translateY(-2px);}
@@ -87,7 +90,7 @@ section{position:relative;padding:120px 0;overflow:hidden;}
 .btn-play:hover .btn-play-icon{background:var(--navy);border-color:var(--navy);color:#fff;transform:scale(1.06);}
 .btn-play-label{border-bottom:1px dotted var(--ink-muted);padding-bottom:2px;}
 
-
+/* ---- header ---- */
 .site-header{position:sticky;top:0;z-index:100;background:rgba(248,250,255,0.72);backdrop-filter:blur(16px);border-bottom:1px solid var(--line);}
 .header-row{display:flex;align-items:center;gap:32px;padding:20px 0;}
 .brand{display:flex;align-items:center;gap:12px;margin-right:auto;}
@@ -98,7 +101,7 @@ section{position:relative;padding:120px 0;overflow:hidden;}
 .main-nav{display:flex;gap:30px;font-size:14.5px;color:var(--ink-muted);}
 .main-nav a:hover{color:var(--ink);}
 
-
+/* ---- hero ---- */
 .hero{
   padding:100px 0 0;
   position:relative;
@@ -139,9 +142,19 @@ section{position:relative;padding:120px 0;overflow:hidden;}
 }
 .hero-grid{position:relative;z-index:2;display:grid;grid-template-columns:1.02fr 0.98fr;grid-template-rows:720px;gap:20px;align-items:stretch;height:720px;}
 .hero-copy{padding-bottom:100px;display:flex;flex-direction:column;justify-content:flex-start;align-items:flex-start;}
-
+/* Headline is now his own chosen sentence-length slogan (25 Aug: "Вены,
+   артерии, аорта — комплексный подход к лечению сосудов"), not three short
+   punchy words — so the size drops from the old 4.5rem cap (which was
+   tuned for single words) to keep a long phrase from wrapping into a wall
+   of text, and the per-word dot bullets are dropped since they read as
+   decoration on a real sentence rather than a mark after a short word. */
 .hero-h1{font-weight:800;font-size:clamp(1.9rem,3.6vw,3.2rem);line-height:1.15;margin-bottom:26px;}
-
+/* .line used to be display:flex to hold one short word + its dot side by
+   side. Now each .line is a real multi-word phrase, so it needs normal
+   block wrapping instead — flex here was forcing the per-word/per-char
+   reveal spans (added by wrapCharsIn in the script below) onto one
+   unbreakable row and letting the browser's flex line-breaking scramble
+   word fragments across lines. */
 .hero-h1 .line{display:block;}
 .hero-h1 .c-navy{color:var(--navy);}
 .hero-h1 .c-blue{color:var(--blue);}
@@ -161,19 +174,22 @@ section{position:relative;padding:120px 0;overflow:hidden;}
 .hero-portrait{position:relative;z-index:2;display:flex;align-items:flex-start;justify-content:center;height:100%;}
 .hero-portrait img{height:120%;max-height:none;width:auto;max-width:none;flex-shrink:0;filter:drop-shadow(0 30px 50px rgba(10,19,48,0.35));position:relative;z-index:2;
   transform:translate3d(var(--mouse-x,0px),var(--mouse-y,0px),0);transition:transform .3s ease-out;}
-
+/* Trimmed the "35 отзывов" count out (lives only on the reviews section
+   below now) but kept the source attribution — "5.0" alone reads as an
+   unsourced claim, "на ПроДокторов" is what makes it a real, checkable
+   number. */
 .hero-rating-badge{position:absolute;right:0;bottom:16%;z-index:3;background:rgba(15,27,61,0.4);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);border-radius:20px;padding:18px 22px;}
 .hero-rating-badge-top{display:flex;align-items:baseline;gap:8px;margin-bottom:6px;}
 .hero-rating-badge strong{font-family:var(--font-body);font-weight:700;font-size:19px;color:#fff;}
 .hero-rating-badge .stars{color:var(--cyan);font-size:12px;letter-spacing:1px;}
 .hero-rating-badge span{display:block;font-size:12.5px;line-height:1.4;color:rgba(255,255,255,0.65);}
 
-
+/* ---- about ---- */
 .about{background:rgba(248,250,255,0.8);}
 .about-orb{position:absolute;left:-14%;top:10%;width:42%;height:90%;border-radius:50%;background:radial-gradient(circle at 60% 40%,#eefbff 0%,#bdeefc 25%,#6fcdf0 50%,transparent 74%);filter:blur(6px);z-index:0;opacity:0.8;}
 .about-grid{position:relative;z-index:1;display:grid;grid-template-columns:0.95fr 1.05fr;gap:64px;align-items:stretch;}
-.about-copy{display:flex;flex-direction:column;justify-content:flex-start;align-items:flex-start;} 
-.about-frame{position:relative;border-radius:var(--radius-lg);overflow:hidden;min-height:420px;aspect-ratio:6/5;box-shadow:0 40px 70px -24px rgba(15,27,61,0.3);} 
+.about-copy{display:flex;flex-direction:column;justify-content:flex-start;align-items:flex-start;} /* was center: with the photo stretched to full row height, centering the (shorter) text block left its top sitting below the photo's top edge — top-align both instead */
+.about-frame{position:relative;border-radius:var(--radius-lg);overflow:hidden;min-height:420px;aspect-ratio:6/5;box-shadow:0 40px 70px -24px rgba(15,27,61,0.3);} /* fixed ratio so the box size is independent of whichever carousel slide is showing — without it, height:100% on the track/slides fell back to the first slide's own intrinsic aspect ratio, and the portrait-oriented doctor-portrait.png blew the frame (and the whole row, via grid stretch) up to ~990px tall */
 .about-frame img{width:100%;height:100%;object-fit:cover;}
 .about-frame-ring{position:absolute;inset:-14px;border-radius:calc(var(--radius-lg) + 14px);border:1.5px solid var(--cyan-soft);z-index:-1;}
 .about-copy h2{font-size:clamp(1.9rem,3vw,2.6rem);margin-bottom:22px;color:var(--navy);}
@@ -187,7 +203,7 @@ section{position:relative;padding:120px 0;overflow:hidden;}
 .about-photo-next{right:16px;}
 .about-photo-counter{position:absolute;right:16px;bottom:16px;z-index:3;background:rgba(15,27,61,0.55);backdrop-filter:blur(6px);color:#fff;font-size:12.5px;font-weight:600;padding:6px 12px;border-radius:999px;}
 
-
+/* ---- roadmap ---- */
 .roadmap-sec{padding:88px 0 92px;background:rgba(248,250,255,0.8);}
 .roadmap-sec .wrap{max-width:1440px;}
 .roadmap-sec .section-head{margin-bottom:34px;}
@@ -209,7 +225,7 @@ section{position:relative;padding:120px 0;overflow:hidden;}
 .rstep-body h3{font-size:16px;line-height:1.2;font-weight:700;color:var(--navy);margin:0;max-width:170px;}
 .rstep-body p{font-size:13px;color:var(--ink-muted);line-height:1.38;max-width:156px;}
 
-
+/* ---- services ---- */
 .services-sec{background:rgba(248,250,255,0.8);}
 .services-grid{display:grid;grid-template-columns:1fr 0.85fr;gap:64px;align-items:start;}
 .svc-list li{border-bottom:1px solid var(--line);}
@@ -227,8 +243,11 @@ li.is-active .svc-content{grid-template-rows:1fr;}
 .svc-display img{width:100%;height:100%;object-fit:contain;opacity:0;filter:drop-shadow(0 30px 50px rgba(20,40,90,0.14));transition:opacity .5s ease;}
 .svc-display img.is-loaded{opacity:1;}
 
-
-
+/* ---- proof: scroll-driven 3D parallax reveal (ported from the other variant) ---- */
+/* overflow:visible overrides the generic section{overflow:hidden} rule above —
+   position:sticky can't pin .proof-sticky to the viewport while any ancestor
+   clips overflow, which was silently breaking the whole scroll-driven reveal
+   (cards + odometer counter rendered, just never where the page put them). */
 .proof{padding:0 0 64px;overflow:visible;}
 .proof-track{position:relative;height:260vh;}
 .proof-sticky{position:sticky;top:0;height:100vh;width:100%;overflow:hidden;display:flex;align-items:center;justify-content:center;background:var(--bg);}
@@ -248,7 +267,7 @@ li.is-active .svc-content{grid-template-rows:1fr;}
 .odometer-strip span{height:1em;line-height:1;display:flex;align-items:center;justify-content:center;}
 .odometer-plus{display:inline-block;margin-left:0.06em;}
 .fan-caption{color:var(--ink-muted);margin-top:14px;font-size:22px;font-weight:600;}
-.reasons-grid{display:none;grid-template-columns:repeat(4,1fr);gap:20px;margin-top:40px;} 
+.reasons-grid{display:none;grid-template-columns:repeat(4,1fr);gap:20px;margin-top:40px;} /* hidden per client request — cards were "Стаж/Выполнено/Публикации/Опыт" after the proof counter; remove display:none to bring back */
 .reason-card{border-radius:var(--radius-md);padding:24px;background:var(--panel);border:1px solid var(--line);}
 .reason-card-top{display:flex;align-items:center;gap:10px;margin-bottom:22px;}
 .reason-icon{flex:none;width:32px;height:32px;border-radius:50%;background:rgba(61,99,214,0.12);color:var(--blue);display:flex;align-items:center;justify-content:center;}
@@ -257,7 +276,7 @@ li.is-active .svc-content{grid-template-rows:1fr;}
 .reason-number{font-family:var(--font-display);font-size:32px;font-weight:800;color:var(--ink);line-height:1.15;}
 .reason-caption{font-size:13px;color:var(--ink-muted);margin-top:4px;}
 
-
+/* ---- static proof ---- */
 .proof-static{padding:96px 0;background:var(--navy);}
 .proof-static-grid{display:grid;grid-template-columns:minmax(0,.9fr) minmax(420px,1.1fr);gap:72px;align-items:stretch;}
 .proof-static-copy{display:flex;flex-direction:column;align-items:flex-start;}
@@ -272,21 +291,47 @@ li.is-active .svc-content{grid-template-rows:1fr;}
 .proof-static-photos{display:grid;grid-template-columns:1fr 1fr;grid-template-rows:1fr 1fr;gap:10px;min-height:520px;}
 .proof-static-photos img{width:100%;height:100%;object-fit:cover;filter:grayscale(1);opacity:.84;border-radius:var(--radius-sm);}
 
-
-
+/* ---- reviews (light) ---- */
+/* Top padding trimmed from the site's shared 130px section rhythm — asked
+   for specifically in this block, so only here, not in booking-sec (which
+   still uses the shared 130px both sides). Floor is the sticky header's own
+   height (91px) plus real breathing room — anything tighter and the heading
+   sits right under/behind the header at the scroll position where this
+   section's top reaches the viewport top. */
 .reviews-sec{padding:110px 0 130px;}
 .reviews-sec .wrap{max-width:1440px;}
-
+/* Light section now (was dark) — no background override, so it reads off
+   the page's own --bg. Centered heading, a text-only "view all" link right
+   under it, one large active video with prev/next arrows beside it, and —
+   flanking that on both sides — exactly as many peeking neighbor thumbnails
+   as the row needs to reach the wrap's own edges (3 per side; the maths:
+   380 video + 2×44 arrows + 2×(3×128 peeks + 2×14 internal gaps) + 4×20
+   outer gaps ≈ 1372px, matching the wrap's 1376px content width at desktop
+   widths), so the block fills the site's grid instead of floating as a
+   narrow column. Clicking a peek jumps straight to that patient; the arrows
+   still step one at a time. Below ~1400px the outer (3rd) peek drops so the
+   row keeps fitting; below 900px peeks drop entirely, leaving the original
+   video+arrows carousel. */
 .reviews-carousel-head{margin-bottom:36px;text-align:center;}
 .reviews-carousel-head h2{font-size:clamp(1.9rem,3.2vw,2.7rem);font-weight:700;color:var(--ink);}
-
+/* Bumped up from the site's standard 13px/blue eyebrow — same size text got
+   lost under this block's much larger heading/video, so only here it's
+   bigger and darker (navy, matching the heading) instead of the shared
+   accent blue. Every other section's eyebrow is untouched. */
 .reviews-carousel-head .eyebrow{margin-bottom:14px;font-size:15px;color:var(--navy);}
 .reviews-carousel-head .reviews-view-all{margin-top:18px;font-size:17px;}
 .reviews-carousel{display:flex;align-items:center;justify-content:center;gap:20px;}
 .reviews-carousel-video{position:relative;width:380px;flex:none;border-radius:var(--radius-lg);overflow:hidden;background:#000;box-shadow:0 40px 70px -24px rgba(15,27,61,0.35);}
-
+/* Capped by viewport height (not just a flat px max) so the video, caption
+   and counter together still fit a normal laptop screen without the video
+   alone eating the whole viewport — on a short window it shrinks; on a tall
+   monitor it still reaches the original 620px. */
 .reviews-carousel-video video{width:100%;aspect-ratio:9/16;max-height:min(620px,64vh);object-fit:cover;display:block;}
-
+/* Big white triangle "play" mark over the poster — no plate behind it, just
+   the glyph with a drop shadow for legibility on any photo. The native
+   <video controls> bar is suppressed (no controls attribute) until this is
+   pressed, so nothing player-shaped shows before that; once pressed it's
+   the only player UI from then on. */
 .reviews-play-btn{position:absolute;inset:0;margin:auto;width:64px;height:64px;border:none;background:none;padding:0;color:#fff;display:flex;align-items:center;justify-content:center;cursor:pointer;filter:drop-shadow(0 6px 18px rgba(0,0,0,0.5));transition:transform .2s ease;z-index:2;}
 .reviews-play-btn svg{width:100%;height:100%;}
 .reviews-play-btn:hover{transform:scale(1.08);}
@@ -305,7 +350,7 @@ li.is-active .svc-content{grid-template-rows:1fr;}
 @media (max-width:900px){.reviews-peek-group{display:none;}}
 @media (max-width:640px){.reviews-carousel{gap:10px;min-width:0;overflow:hidden;}.reviews-carousel-video{width:min(calc(100% - 88px),300px);}.reviews-carousel-arrow{width:34px;height:34px;font-size:17px;}}
 
-
+/* ---- booking (dark) ---- */
 .booking-sec{padding:96px 0;}
 .booking-grid{display:grid;grid-template-columns:0.8fr 1.2fr;gap:64px;align-items:start;}
 .booking-info h2{color:#fff;font-size:clamp(1.8rem,2.6vw,2.3rem);margin-bottom:16px;}
@@ -331,7 +376,7 @@ li.is-active .svc-content{grid-template-rows:1fr;}
 .form-consent{font-size:12px;color:var(--ink-faint);margin-top:16px;}
 .form-submit{width:100%;justify-content:space-between;padding:17px 26px;}
 
-
+/* ---- faq ---- */
 .faq-sec{background:rgba(248,250,255,0.8);}
 .faq-sec .wrap{max-width:1440px;}
 .faq-list li{border-bottom:1px solid var(--line);}
@@ -345,7 +390,7 @@ li.is-active .faq-content{grid-template-rows:1fr;}
 .faq-content-inner{overflow:hidden;}
 .faq-content-inner p{padding:0 50px 26px 50px;color:var(--ink-muted);font-size:14.5px;line-height:1.6;max-width:60ch;}
 
-
+/* ---- footer (dark) ---- */
 .site-footer{position:relative;padding:96px 0 0;overflow:hidden;}
 .footer-glow{position:absolute;left:-10%;top:-30%;width:60%;height:100%;border-radius:50%;background:radial-gradient(circle,#5fd8f5 0%,transparent 68%);opacity:0.18;filter:blur(30px);}
 .footer-grid{position:relative;z-index:1;display:grid;grid-template-columns:1.3fr 1fr 1fr 1fr;gap:48px;padding-bottom:64px;}
@@ -363,8 +408,15 @@ li.is-active .faq-content{grid-template-rows:1fr;}
 .footer-col a:hover{color:var(--cyan);}
 .footer-bottom{position:relative;z-index:1;display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;padding:26px 0;border-top:1px solid var(--line);font-size:12.5px;color:var(--ink-faint);}
 
-
-
+/* ---- reduced motion ---- */
+/* Ambient decorative loops (breathing glow, bobbing scroll cue) carry no
+   information — turn them off outright. Reveal/char-reveal *do* carry
+   content (it's invisible until the transition runs), so instead of
+   nuking their transition-duration to ~0 (a single-frame flash on the
+   char-by-char stagger), their initial state is overridden to already be
+   the finished, visible state — same end result, no motion, no flash.
+   The proof section's scroll-driven 3D tilt/rotate is gated in JS instead,
+   since it's computed from scroll position on every frame, not CSS. */
 @media (prefers-reduced-motion: reduce){
   .hero-arc,.hero-glow-core{animation:none;}
   .reveal,.char-parent .word,.char{opacity:1 !important;filter:none !important;transform:none !important;transition:none !important;}
@@ -424,7 +476,25 @@ li.is-active .faq-content{grid-template-rows:1fr;}
 </head>
 <body>
 <a class="skip-link" href="#top">Перейти к&nbsp;содержанию</a>
-
+<!--
+  THESIS: A glowing orb of instrument light — the visual signature of an ultrasound pulse —
+  replaces the flat pastel wash; every section either sits in daylight or steps into the same
+  navy signal, never a generic card grid.
+  OWN-WORLD: Near-white ground with one radiant white->cyan->navy orb as the sole atmosphere;
+  Unbounded display type with accent dots closing each headline line; outline pill buttons with
+  a diagonal arrow, never a filled chevron; dark navy "signal" panels alternate with daylight
+  panels down the page.
+  STORY: A visitor lands inside calm precision, reads the two decision paths, watches the
+  4000+ proof resolve inside the same glow, and books from a dark, focused panel. The proof
+  moment is a real-photo collage (Georgy's own OR/portrait/interview shots, not stock or
+  patient photos), not an abstract node field.
+  FIRST VIEWPORT: split hero — eyebrow, three-line dotted headline, subhead, dual CTA and a
+  stat row on the left; portrait floating on the orb, rating badge and scroll cue on the right.
+  FORM: user-pinned reproduction of a supplied reference comp (glow-orb hero), extended house-
+  style across the rest of the page. Comp-led — no seed roll.
+  FINISH: unreviewed and undocumented is unfinished; this is a bounded design experiment, not
+  a production ship — reviewed once in-thread, not through the formal finish pipeline.
+-->
 
 <header class="site-header">
   <div class="wrap header-row">
@@ -448,7 +518,7 @@ li.is-active .faq-content{grid-template-rows:1fr;}
 
 <main id="top">
 
-  
+  <!-- HERO -->
   <section class="hero" id="heroSection">
     <div class="hero-arc" aria-hidden="true"></div>
     <div class="hero-glow-core" aria-hidden="true"></div>
@@ -513,7 +583,7 @@ li.is-active .faq-content{grid-template-rows:1fr;}
     </div>
   </section>
 
-  
+  <!-- ABOUT -->
   <section class="about" id="about">
     <div class="about-orb" aria-hidden="true"></div>
     <div class="wrap about-grid">
@@ -543,7 +613,7 @@ li.is-active .faq-content{grid-template-rows:1fr;}
     </div>
   </section>
 
-  
+  <!-- ROADMAP -->
   <section class="roadmap-sec" id="paths">
     <div class="wrap">
       <div class="section-head reveal">
@@ -603,7 +673,7 @@ li.is-active .faq-content{grid-template-rows:1fr;}
       </div>
   </section>
 
-  
+  <!-- SERVICES -->
   <section class="services-sec" id="services">
     <div class="wrap">
       <div class="section-head reveal">
@@ -644,7 +714,7 @@ li.is-active .faq-content{grid-template-rows:1fr;}
     </div>
   </section>
 
-  
+  <!-- PROOF: scroll-driven patient mosaic -->
   <section class="proof" id="proof">
     <div class="proof-track" data-proof-track>
       <div class="proof-sticky">
@@ -684,7 +754,7 @@ li.is-active .faq-content{grid-template-rows:1fr;}
     </div>
   </section>
 
-  
+  <!-- REVIEWS (light) -->
   <section class="reviews-sec">
     <div class="wrap reveal">
       <div class="reviews-carousel-head">
@@ -720,7 +790,7 @@ li.is-active .faq-content{grid-template-rows:1fr;}
     </div>
   </section>
 
-  
+  <!-- BOOKING (dark) -->
   <section class="booking-sec dark" id="booking">
     <div class="wrap booking-grid reveal">
       <div class="booking-info">
@@ -747,7 +817,277 @@ li.is-active .faq-content{grid-template-rows:1fr;}
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21.44 11.05l-9.19 9.19a6 6 0 0 1-8.49-8.49l9.19-9.19a4 4 0 0 1 5.66 5.66l-9.2 9.19a2 2 0 0 1-2.83-2.83l8.49-8.48"/></svg>
               <span class="file-attach-text" id="fileAttachText">Прикрепить фото</span>
             </label>
-            <input type="file" id="bf-photo" accept="image
+            <input type="file" id="bf-photo" accept="image/*" multiple class="file-input-hidden">
+          </div>
+          <button class="btn btn-solid form-submit" type="submit">
+            <span>Отправить заявку</span>
+            <span class="btn-arrow" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M8 7h9v9"/></svg></span>
+          </button>
+          <p class="form-consent">Отправляя форму, вы соглашаетесь на&nbsp;обработку персональных данных.</p>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="faq-sec">
+    <div class="wrap section-head reveal">
+      <p class="eyebrow">Вопросы</p>
+      <h2 class="reveal">Частые вопросы</h2>
+    </div>
+    <div class="wrap reveal">
+      <ul class="faq-list" data-faq-list>
+        <li class="is-active" data-service="0">
+          <button class="faq-trigger" type="button"><span class="faq-index">01</span><span class="faq-title">Как быстро вы отвечаете?</span><span class="faq-plus" aria-hidden="true">+</span></button>
+          <div class="faq-content"><div class="faq-content-inner"><p>Обычно в&nbsp;течение рабочего дня — лично, в&nbsp;Telegram, ВКонтакте или MAX. Без&nbsp;анонимных операторов и&nbsp;очереди в&nbsp;чате. Срочные сообщения смотрю в&nbsp;приоритете.</p></div></div>
+        </li>
+        <li data-service="1">
+          <button class="faq-trigger" type="button"><span class="faq-index">02</span><span class="faq-title">Можно проконсультироваться дистанционно?</span><span class="faq-plus" aria-hidden="true">+</span></button>
+          <div class="faq-content"><div class="faq-content-inner"><p>Да. Если пациент не&nbsp;может приехать сам, пришлите фото раны и&nbsp;файл КТ в&nbsp;мессенджер — оценю случай и&nbsp;скажу, что делать дальше, без&nbsp;очной встречи.</p></div></div>
+        </li>
+        <li data-service="2">
+          <button class="faq-trigger" type="button"><span class="faq-index">03</span><span class="faq-title">Нужно направление или анализы заранее?</span><span class="faq-plus" aria-hidden="true">+</span></button>
+          <div class="faq-content"><div class="faq-content-inner"><p>Нет. Решение принимается по&nbsp;итогам осмотра, УЗДГ и&nbsp;снимков КТ — без&nbsp;сбора лишних справок и&nbsp;хождения по&nbsp;кабинетам.</p></div></div>
+        </li>
+        <li data-service="3">
+          <button class="faq-trigger" type="button"><span class="faq-index">04</span><span class="faq-title">Можно ли самому пройти УЗИ перед приёмом?</span><span class="faq-plus" aria-hidden="true">+</span></button>
+          <div class="faq-content"><div class="faq-content-inner"><p>Да, если так удобнее — самостоятельное проведение УЗДГ не&nbsp;обязательно, я&nbsp;и сам делаю его на&nbsp;приёме. Присланных снимков и&nbsp;результатов вашего УЗИ тоже достаточно, чтобы предварительно оценить случай.</p></div></div>
+        </li>
+        <li data-service="4">
+          <button class="faq-trigger" type="button"><span class="faq-index">05</span><span class="faq-title">Сколько стоит консультация?</span><span class="faq-plus" aria-hidden="true">+</span></button>
+          <div class="faq-content"><div class="faq-content-inner"><p>Стоимость зависит от&nbsp;случая и&nbsp;уточняется индивидуально в&nbsp;переписке — напишите в&nbsp;мессенджер, отвечу лично.</p></div></div>
+        </li>
+        <li data-service="5">
+          <button class="faq-trigger" type="button"><span class="faq-index">06</span><span class="faq-title">Где вы принимаете?</span><span class="faq-plus" aria-hidden="true">+</span></button>
+          <div class="faq-content"><div class="faq-content-inner"><p>Два адреса в&nbsp;Москве — РЖД‑Медицина им. Н.А. Семашко и&nbsp;МЕДСИ. Оба — по&nbsp;предварительной записи.</p></div></div>
+        </li>
+        <li data-service="6">
+          <button class="faq-trigger" type="button"><span class="faq-index">07</span><span class="faq-title">Какой у&nbsp;вас опыт?</span><span class="faq-plus" aria-hidden="true">+</span></button>
+          <div class="faq-content"><div class="faq-content-inner"><p>10+ лет практики, свыше 4000 сосудистых реконструкций, 40+ научных публикаций и&nbsp;стажировки в&nbsp;Нидерландах, Великобритании и&nbsp;Израиле.</p></div></div>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer dark">
+  <div class="footer-glow" aria-hidden="true"></div>
+  <div class="wrap footer-grid">
+    <div class="footer-brand">
+      <div class="footer-brand-lockup">
+        <span class="brand-mark" aria-hidden="true">Т</span>
+        <div><p class="footer-brand-name">Трейгер Георгий Александрович</p><p class="footer-brand-role">Сосудистый хирург (ангиохирург), флеболог</p></div>
+      </div>
+      <a class="btn btn-solid" href="#booking">
+        <span>Записаться</span>
+        <span class="btn-arrow" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M8 7h9v9"/></svg></span>
+      </a>
+    </div>
+    <div class="footer-col">
+      <h3>Быстрые ссылки</h3>
+      <a href="index.html">Главная</a>
+      <a href="about.html">Обо мне</a>
+      <a href="contacts.html">Контакты</a>
+    </div>
+    <div class="footer-col">
+      <h3>Контакты</h3>
+      <a href="tel:+79514808215">+7 951 480‑82‑15</a>
+      <a href="https://t.me/dr_treiger" target="_blank" rel="noopener">Telegram: @dr_treiger</a>
+      <a href="contacts.html">Адреса приёма →</a>
+    </div>
+    <div class="footer-col">
+      <h3>Мы в&nbsp;сети</h3>
+      <a href="https://t.me/dr_treiger" target="_blank" rel="noopener">Telegram</a>
+      <a href="https://prodoctorov.ru" target="_blank" rel="noopener">ПроДокторов</a>
+    </div>
+  </div>
+  <div class="wrap footer-bottom">
+    <p>© 2026 Трейгер Георгий Александрович. Все права защищены.</p>
+    <p>Информация на&nbsp;сайте не&nbsp;заменяет очную консультацию врача.</p>
+  </div>
+</footer>
+
+<script>
+// hero's own decorative line bundle — draws in once on load.
+(function () {
+  const heroPaths = [...document.querySelectorAll('.hero-orb-lines path')];
+  function measure() {
+    heroPaths.forEach((p) => {
+      p.style.strokeDasharray = p.getTotalLength();
+      p.style.strokeDashoffset = 0;
+    });
+  }
+  window.addEventListener('resize', measure);
+  window.addEventListener('load', measure);
+  setTimeout(measure, 300);
+  setTimeout(measure, 1200);
+  measure();
+})();
+
+// hero portrait mouse parallax
+const heroSection = document.getElementById('heroSection');
+if (heroSection && matchMedia('(hover:hover) and (pointer:fine)').matches) {
+  heroSection.addEventListener('mousemove', (e) => {
+    const rect = heroSection.getBoundingClientRect();
+    const x = (e.clientX - rect.left) / rect.width - 0.5;
+    const y = (e.clientY - rect.top) / rect.height - 0.5;
+    heroSection.style.setProperty('--mouse-x', `${x * 14}px`);
+    heroSection.style.setProperty('--mouse-y', `${y * 10}px`);
+  });
+}
+
+// heading char-reveal: each character blurs/darkens in individually with a
+// short stagger, instead of the whole heading fading as one block.
+function wrapCharsIn(node, delayRef) {
+  if (node.nodeType === Node.TEXT_NODE) {
+    const frag = document.createDocumentFragment();
+    const tokens = node.textContent.split(/(\s+)/);
+    tokens.forEach((token) => {
+      if (token === '') return;
+      if (/^\s+$/.test(token)) {
+        frag.appendChild(document.createTextNode(token));
+        return;
+      }
+      const wordSpan = document.createElement('span');
+      wordSpan.className = 'word';
+      [...token].forEach((ch) => {
+        const span = document.createElement('span');
+        span.className = 'char';
+        span.textContent = ch;
+        span.style.transitionDelay = `${delayRef.i * 14}ms`;
+        delayRef.i += 1;
+        wordSpan.appendChild(span);
+      });
+      frag.appendChild(wordSpan);
+    });
+    node.replaceWith(frag);
+  } else if (node.nodeType === Node.ELEMENT_NODE) {
+    Array.from(node.childNodes).forEach((child) => wrapCharsIn(child, delayRef));
+  }
+}
+document.querySelectorAll('h1.reveal, h2.reveal').forEach((heading) => {
+  heading.classList.add('char-parent');
+  const delayRef = { i: 0 };
+  Array.from(heading.childNodes).forEach((child) => wrapCharsIn(child, delayRef));
+});
+
+// button label roll: on hover each character rolls up to a duplicate copy
+// underneath, staggered left-to-right so it reads as a wave, not one block.
+document.querySelectorAll('.btn').forEach((btn) => {
+  const label = btn.querySelector(':scope > span:not(.btn-arrow)');
+  if (!label) return;
+  const text = label.textContent;
+  label.classList.add('btn-label');
+  label.innerHTML = '';
+  [...text].forEach((ch, i) => {
+    const rendered = ch === ' ' ? ' ' : ch;
+    const charEl = document.createElement('span');
+    charEl.className = 'btn-char';
+    const inner = document.createElement('span');
+    inner.className = 'btn-char-inner';
+    inner.style.transitionDelay = `${i * 16}ms`;
+    inner.innerHTML = `<span class="btn-char-line">${rendered}</span><span class="btn-char-line" aria-hidden="true">${rendered}</span>`;
+    charEl.appendChild(inner);
+    label.appendChild(charEl);
+  });
+});
+
+// reveal on scroll
+const revealEls = document.querySelectorAll('.reveal');
+const io = new IntersectionObserver((entries) => {
+  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('is-visible'); io.unobserve(e.target); } });
+}, { threshold: 0.15 });
+revealEls.forEach(el => io.observe(el));
+
+// path switcher
+const switcher = document.querySelector('[data-switcher]');
+if (switcher) {
+  const thumb = switcher.querySelector('[data-switcher-thumb]');
+  const btns = [...switcher.querySelectorAll('.path-switcher-btn')];
+  const views = [...document.querySelectorAll('[data-roadmap-view]')];
+  function moveThumb(btn) {
+    thumb.style.width = btn.offsetWidth + 'px';
+    thumb.style.transform = `translateX(${btn.offsetLeft - 5}px)`;
+  }
+  function activate(idx) {
+    btns.forEach((b, i) => b.classList.toggle('is-active', i === idx));
+    views.forEach((v, i) => v.hidden = i !== idx);
+    moveThumb(btns[idx]);
+    layoutRoadmapLine();
+  }
+  btns.forEach((b, i) => b.addEventListener('click', () => activate(i)));
+  window.addEventListener('load', () => moveThumb(btns[0]));
+  window.addEventListener('resize', () => moveThumb(btns.find(b => b.classList.contains('is-active'))));
+}
+
+// roadmap connector line — measured against the real dot positions so it
+// always runs exactly through every step icon, never a fixed guessed offset.
+const roadmapTrack = document.querySelector('.roadmap-track');
+function layoutRoadmapLine() {
+  if (!roadmapTrack) return;
+  const line = roadmapTrack.querySelector('.roadmap-line');
+  const view = roadmapTrack.querySelector('.roadmap-view:not([hidden])') || roadmapTrack.querySelector('.roadmap-view');
+  const dots = view ? [...view.querySelectorAll('.rstep-dot')] : [];
+  if (!line || dots.length < 2) return;
+  const trackRect = roadmapTrack.getBoundingClientRect();
+  const first = dots[0].getBoundingClientRect();
+  const last = dots[dots.length - 1].getBoundingClientRect();
+  line.style.top = (first.top + first.height / 2 - trackRect.top) + 'px';
+  line.style.left = (first.left + first.width / 2 - trackRect.left) + 'px';
+  line.style.width = (last.left + last.width / 2 - (first.left + first.width / 2)) + 'px';
+}
+window.addEventListener('load', layoutRoadmapLine);
+window.addEventListener('resize', layoutRoadmapLine);
+layoutRoadmapLine();
+
+// services accordion + image swap
+const svcList = document.querySelector('[data-service-list]');
+if (svcList) {
+  const items = [...svcList.querySelectorAll('li')];
+  const photo = document.querySelector('[data-service-photo]');
+  function swapPhoto(src) {
+    photo.classList.remove('is-loaded');
+    const img = new Image();
+    img.onload = () => { photo.src = src; photo.classList.add('is-loaded'); };
+    img.src = src;
+  }
+  photo.addEventListener('load', () => photo.classList.add('is-loaded'), { once: true });
+  items.forEach(li => {
+    li.querySelector('.svc-trigger').addEventListener('click', () => {
+      items.forEach(o => o.classList.remove('is-active'));
+      li.classList.add('is-active');
+      swapPhoto(li.dataset.img);
+    });
+  });
+}
+
+// faq accordion
+const faqList = document.querySelector('[data-faq-list]');
+if (faqList) {
+  const items = [...faqList.querySelectorAll('li')];
+  items.forEach(li => {
+    li.querySelector('.faq-trigger').addEventListener('click', () => {
+      const wasActive = li.classList.contains('is-active');
+      items.forEach(o => o.classList.remove('is-active'));
+      if (!wasActive) li.classList.add('is-active');
+    });
+  });
+}
+
+// proof: scroll-driven 3D parallax reveal (ported from the other variant) —
+// banner grows to full-bleed, then a 4-column grid settles out of a steep
+// 3D tilt while columns parallax at different speeds, then the stat fades
+// in. Photos are placeholder patient-style stock images, never Georgy's own
+// portrait/OR shots — swap for real patient photos once consent is in.
+const proofTrack = document.querySelector('[data-proof-track]');
+if (proofTrack) {
+  // Deferred: building ~250 image cards synchronously at parse time blocked
+  // the main thread long enough to delay the first paint (hero text stayed
+  // invisible for several seconds). Runs after the browser is idle instead.
+  const runProofSetup = () => {
+  const GALLERY_IMAGES = [
+    /* real patients, frame-grabbed from video testimonials Georgy collected — replaces the Unsplash stock-photo placeholders (consent confirmed by the client) */
     'assets/images/proof/patient-01.jpg',
     'assets/images/proof/patient-02.jpg',
     'assets/images/proof/patient-03.jpg',
@@ -764,7 +1104,9 @@ li.is-active .faq-content{grid-template-rows:1fr;}
     'assets/images/proof/patient-14.jpg'
   ];
   const proofCols = Array.from(proofTrack.querySelectorAll('[data-proof-col]'));
-  const REPEAT_COUNT = 6; 
+  const REPEAT_COUNT = 6; /* placeholder gallery — duplicated for volume until real patient photos are supplied.
+    Was 18 (~234 <img> total across 4 columns for only 13 unique URLs) — cut to 6 (~78 total),
+    still several multiples taller than the sticky viewport needs for the parallax travel range. */
   proofCols.forEach((col, i) => {
     const subset = GALLERY_IMAGES.filter((_, idx) => idx % proofCols.length === i);
     let repeated = [];
@@ -774,7 +1116,12 @@ li.is-active .faq-content{grid-template-rows:1fr;}
       card.className = 'proof-card';
       const img = document.createElement('img');
       img.src = src;
-      
+      /* not lazy: this section's construction is already deferred (see
+         requestIdleCallback above), and the images sit inside a 3D-transformed,
+         scroll-driven container whose on-screen position doesn't line up with
+         where native loading="lazy" expects it — lazy here left every card
+         blank. Only ~13 unique URLs (repeated for volume), so the browser
+         cache makes eager loading here cheap. */
       img.alt = '';
       card.appendChild(img);
       col.appendChild(card);
@@ -822,6 +1169,10 @@ li.is-active .faq-content{grid-template-rows:1fr;}
 
   const proofClamp = (v, min, max) => Math.max(min, Math.min(max, v));
   const proofLerp = (a, b, t) => a + (b - a) * t;
+  // The rotate/scale/translateZ choreography below is exactly the kind of
+  // scroll-linked motion prefers-reduced-motion exists for; the payoff
+  // itself (the "4000+" counter) is real content, so it still reveals —
+  // just as a plain fade, with the frame/grid left in their resting state.
   const proofReducedMotion = matchMedia('(prefers-reduced-motion: reduce)').matches;
   const proofCompact = matchMedia('(max-width: 640px)').matches;
 
@@ -873,6 +1224,8 @@ li.is-active .faq-content{grid-template-rows:1fr;}
     setTimeout(runProofSetup, 150);
   }
 }
+
+// about photo carousel: arrows + counter, auto-advances, pauses on interaction
 const aboutCarousel = document.querySelector('[data-about-carousel]');
 if (aboutCarousel) {
   const track = aboutCarousel.querySelector('[data-about-track]');
@@ -891,6 +1244,13 @@ if (aboutCarousel) {
   renderAbout();
   restartAbout();
 }
+
+// reviews carousel: one large active video with prev/next arrows, flanked
+// by peeking neighbor thumbnails on both sides (3 per side, sized to reach
+// the wrap's edges). Arrows step one at a time; clicking a peek jumps
+// straight to that patient and every peek recomputes around the new
+// index, wrapping around the full list of 10. No autoplay on switch — the
+// player's own explicit Play button is the only way playback starts.
 const reviewsCarousel = document.querySelector('[data-carousel]');
 if (reviewsCarousel) {
   const REVIEWS = [
@@ -941,10 +1301,15 @@ if (reviewsCarousel) {
   peeks.forEach(peek => {
     peek.addEventListener('click', () => { current = Number(peek.dataset.index); render(); });
   });
+  // Nothing player-shaped shows before this: no controls attribute, just the
+  // triangle. Pressing it turns native controls on and starts playback —
+  // from then on it's just the browser's own player.
   playOverlay.addEventListener('click', () => { mainVideo.controls = true; mainVideo.play(); });
   mainVideo.addEventListener('play', () => mainVideoWrap.classList.add('is-playing'));
   render();
 }
+
+// photo attach: swaps the dashed-box label text for the chosen filename(s)
 const photoInput = document.getElementById('bf-photo');
 const fileAttachText = document.getElementById('fileAttachText');
 const fileAttachLabel = document.getElementById('fileAttachLabel');
@@ -963,6 +1328,8 @@ if (photoInput && fileAttachText && fileAttachLabel) {
     }
   });
 }
+
+// booking form fake submit
 const bookingForm = document.getElementById('bookingForm');
 if (bookingForm) {
   bookingForm.addEventListener('submit', (e) => {
@@ -976,4 +1343,3 @@ if (bookingForm) {
 </script>
 </body>
 </html>
-
