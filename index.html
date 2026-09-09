@@ -453,7 +453,7 @@ li.is-active .faq-content{grid-template-rows:1fr;}
   .about-grid,.services-grid,.booking-grid{grid-template-columns:1fr;gap:36px;}
   .footer-grid{grid-template-columns:1fr 1fr;}
   .reasons-grid{grid-template-columns:1fr 1fr;}
-  .proof-track{height:170vh;}
+  .proof-track{height:260vh;}
   .proof-static-grid{grid-template-columns:1fr;gap:44px;}
   .proof-static-photos{min-height:460px;}
   .roadmap-track{width:calc(100% - 48px);}
@@ -464,7 +464,7 @@ li.is-active .faq-content{grid-template-rows:1fr;}
   .rstep-dot{grid-column:1;grid-row:1/4;width:46px;height:46px;margin:0;}
   .rstep-body h3{grid-column:2;grid-row:2;max-width:none;}
   .rstep-body p{grid-column:2;grid-row:3;max-width:38ch;}
-  .roadmap-line{display:none;}
+  .roadmap-line{display:block;width:2px;height:0;}
   .main-nav{display:flex;position:fixed;inset:0;z-index:99;padding:clamp(118px,20vh,170px) 24px 34px;background:linear-gradient(145deg,#0f1b3d 0%,#172958 58%,#203974 100%);flex-direction:column;align-items:stretch;gap:0;opacity:0;visibility:hidden;transform:translateY(-100%);transition:transform .65s cubic-bezier(.65,.01,.05,.99),opacity .3s ease,visibility .65s;overflow:auto;}
   .main-nav::before,.main-nav::after{content:'';position:absolute;border-radius:50%;pointer-events:none;}
   .main-nav::before{width:70vw;height:70vw;right:-24vw;top:-12vw;background:radial-gradient(circle,rgba(95,216,245,.2),transparent 68%);}
@@ -500,8 +500,8 @@ li.is-active .faq-content{grid-template-rows:1fr;}
   .hero{padding-top:92px;}
   .hero-actions{flex-direction:column;align-items:stretch;}
   .hero-actions .btn{justify-content:center;}
-  .hero-portrait{height:470px;min-height:0;margin-top:4px;}
-  .hero-portrait img.hero-portrait-cool{height:540px;width:auto;max-width:none;margin-bottom:-38px;}
+  .hero-portrait{height:470px;min-height:0;width:100vw;margin:4px 0 0 calc(50% - 50vw);}
+  .hero-portrait img.hero-portrait-cool{height:min(540px,150vw);width:auto;max-width:100vw;margin-bottom:0;}
   .about-frame{width:100%;min-width:0;min-height:0;aspect-ratio:4/5;}
   .about-frame-ring{display:none;}
   .about-photo-track{width:100%;}
@@ -513,7 +513,7 @@ li.is-active .faq-content{grid-template-rows:1fr;}
   .hero-stat span{font-size:12px;white-space:normal;}
   .hero-stat:last-child strong{color:var(--navy);}
   .hero-stat:last-child span{color:var(--ink-muted);}
-  .proof-track{height:150vh;}
+  .proof-track{height:260vh;}
   .roadmap-sec,.proof-static,.booking-sec{padding:76px 0;}
   .roadmap-track{width:calc(100% - 40px);}
   .proof-static-photos{min-height:360px;}
@@ -1127,9 +1127,19 @@ function layoutRoadmapLine() {
   const trackRect = roadmapTrack.getBoundingClientRect();
   const first = dots[0].getBoundingClientRect();
   const last = dots[dots.length - 1].getBoundingClientRect();
-  line.style.top = (first.top + first.height / 2 - trackRect.top) + 'px';
-  line.style.left = (first.left + first.width / 2 - trackRect.left) + 'px';
-  line.style.width = (last.left + last.width / 2 - (first.left + first.width / 2)) + 'px';
+  const firstCenterX = first.left + first.width / 2;
+  const firstCenterY = first.top + first.height / 2;
+  const lastCenterX = last.left + last.width / 2;
+  const lastCenterY = last.top + last.height / 2;
+  line.style.top = (firstCenterY - trackRect.top) + 'px';
+  line.style.left = (firstCenterX - trackRect.left) + 'px';
+  if (window.matchMedia('(max-width: 960px)').matches) {
+    line.style.width = '2px';
+    line.style.height = Math.max(0, lastCenterY - firstCenterY) + 'px';
+  } else {
+    line.style.width = Math.max(0, lastCenterX - firstCenterX) + 'px';
+    line.style.height = '2px';
+  }
 }
 window.addEventListener('load', layoutRoadmapLine);
 window.addEventListener('resize', layoutRoadmapLine);
@@ -1280,7 +1290,7 @@ if (proofTrack) {
       proofFrame.style.transform = `scale(${proofLerp(0.9, 1, p1)}, ${proofLerp(0.8, 1, p1)})`;
       proofFrame.style.borderRadius = `${proofLerp(48, 0, p1)}px`;
 
-      const p2 = proofClamp((p - (proofCompact ? 0.06 : 0.15)) / (proofCompact ? 0.94 : 0.85), 0, 1);
+      const p2 = proofClamp((p - 0.15) / 0.85, 0, 1);
       const rx = proofLerp(proofCompact ? 12 : 25, 4, p2);
       const ry = proofLerp(proofCompact ? -18 : -45, -8, p2);
       const rz = proofLerp(proofCompact ? 7 : 15, 2, p2);
@@ -1292,7 +1302,7 @@ if (proofTrack) {
       });
     }
 
-    const payoffStart = proofCompact ? 0.58 : 0.72;
+    const payoffStart = 0.72;
     const p3 = proofClamp((p - payoffStart) / (1 - payoffStart), 0, 1);
     proofPayoff.style.opacity = String(p3);
     proofPayoff.style.transform = `translateY(${proofLerp(20, 0, p3)}px)`;
