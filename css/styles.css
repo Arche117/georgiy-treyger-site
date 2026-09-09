@@ -578,7 +578,7 @@ section h2{font-size:clamp(1.6rem,2.6vw,2.3rem);max-width:20ch;margin-bottom:8px
   .contact-locations{grid-template-columns:1fr;border-top:0;}
   .reasons-grid{grid-template-columns:1fr;}
   .footer-grid{grid-template-columns:1fr;gap:32px;}
-  .footer-bottom{flex-direction:column;align-items:flex-start;padding-top:36px;}
+  .footer-bottom{flex-direction:column;align-items:flex-start;padding:48px 0 38px;gap:22px;}
   .closing-cta-grid{flex-direction:column;align-items:flex-start;}
   .closing-cta-actions{width:100%;flex-direction:column;align-items:stretch;}
   .closing-cta-actions .btn{justify-content:space-between;}
