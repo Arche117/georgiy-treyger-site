@@ -504,7 +504,7 @@ li.is-active .faq-content{grid-template-rows:1fr;}
   main .quickcontact,main .btn{width:100%;}
   main .btn{justify-content:space-between;min-height:52px;}
   .hero-actions>.quickcontact,.hero-actions>.btn,.hero-actions .quickcontact-toggle{width:100%;}
-  .hero-portrait{height:470px;min-height:0;width:100vw;margin:4px 0 0 calc(50% - 50vw);}
+  .hero-portrait{height:min(540px,150vw);min-height:0;width:100vw;margin:16px 0 0 calc(50% - 50vw);}
   .hero-portrait img.hero-portrait-cool{height:min(540px,150vw);width:auto;max-width:100vw;margin-bottom:0;}
   .about-frame{width:100%;min-width:0;min-height:0;aspect-ratio:4/5;}
   .about-frame-ring{display:none;}
@@ -522,6 +522,7 @@ li.is-active .faq-content{grid-template-rows:1fr;}
   .proof-sticky,.proof-frame{height:100svh;}
   .proof-card img{filter:none;opacity:.58;}
   .proof-card::after{mix-blend-mode:normal;background:linear-gradient(160deg,rgba(15,27,61,.5),rgba(61,99,214,.34));}
+  .proof-payoff-panel{backdrop-filter:none;background:rgba(6,10,24,.82);}
   .hero-sub,.about-copy p,.section-head>p:last-child,.rstep-body p,.svc-content-inner p,.booking-copy p,.faq-content-inner p,.reviews-note{font-size:16px;line-height:1.62;}
   .roadmap-sec,.proof-static,.booking-sec{padding:76px 0;}
   .roadmap-track{width:calc(100% - 40px);}
@@ -640,7 +641,7 @@ li.is-active .faq-content{grid-template-rows:1fr;}
           <div class="hero-stat"><strong>3 <small class="hero-stat-unit">страны</small></strong><span>международная практика</span></div>
         </div>
       </div>
-      <div class="hero-portrait reveal">
+      <div class="hero-portrait">
         <img class="hero-portrait-cool" src="assets/images/about/new/hero-bw-colorized-cutout-v2.png" alt="Трейгер Георгий Александрович, сосудистый хирург" width="1024" height="1536">
         <div class="hero-rating-badge">
           <div class="hero-rating-badge-top"><strong>5.0</strong><span class="stars" aria-hidden="true">★★★★★</span></div>
@@ -1217,8 +1218,10 @@ if (proofTrack) {
     'assets/images/proof/patient-13.jpg',
     'assets/images/proof/patient-14.jpg'
   ];
-  const proofCols = Array.from(proofTrack.querySelectorAll('[data-proof-col]'));
-  const REPEAT_COUNT = proofCompact ? 3 : 6; /* placeholder gallery — duplicated for volume until real patient photos are supplied.
+  const allProofCols = Array.from(proofTrack.querySelectorAll('[data-proof-col]'));
+  const proofCols = proofCompact ? allProofCols.slice(0, 3) : allProofCols;
+  if (proofCompact) allProofCols.slice(3).forEach((col) => { col.hidden = true; });
+  const REPEAT_COUNT = proofCompact ? 1 : 6; /* placeholder gallery — duplicated for volume until real patient photos are supplied.
     Was 18 (~234 <img> total across 4 columns for only 13 unique URLs) — cut to 6 (~78 total),
     still several multiples taller than the sticky viewport needs for the parallax travel range. */
   proofCols.forEach((col, i) => {
@@ -1296,15 +1299,22 @@ if (proofTrack) {
 
     if (!proofReducedMotion) {
       const p1 = proofClamp(p / 0.15, 0, 1);
-      proofFrame.style.transform = `scale(${proofLerp(0.9, 1, p1)}, ${proofLerp(0.8, 1, p1)})`;
-      proofFrame.style.borderRadius = `${proofLerp(48, 0, p1)}px`;
+      if (proofCompact) {
+        proofFrame.style.transform = 'none';
+        proofFrame.style.borderRadius = '0px';
+      } else {
+        proofFrame.style.transform = `scale(${proofLerp(0.9, 1, p1)}, ${proofLerp(0.8, 1, p1)})`;
+        proofFrame.style.borderRadius = `${proofLerp(48, 0, p1)}px`;
+      }
 
       const p2 = proofClamp((p - 0.15) / 0.85, 0, 1);
       const rx = proofLerp(proofCompact ? 12 : 25, 4, p2);
       const ry = proofLerp(proofCompact ? -18 : -45, -8, p2);
       const rz = proofLerp(proofCompact ? 7 : 15, 2, p2);
       const tz = proofLerp(proofCompact ? -180 : -800, 0, p2);
-      proofGrid.style.transform = `perspective(1200px) rotateX(${rx}deg) rotateY(${ry}deg) rotateZ(${rz}deg) translateZ(${tz}px)`;
+      proofGrid.style.transform = proofCompact
+        ? `translate3d(0,0,0) scale(${proofLerp(.92,1,p2)}) rotate(${proofLerp(3,0,p2)}deg)`
+        : `perspective(1200px) rotateX(${rx}deg) rotateY(${ry}deg) rotateZ(${rz}deg) translateZ(${tz}px)`;
       proofCols.forEach((col, i) => {
         const [from, to] = COLUMN_RANGES[i % COLUMN_RANGES.length];
         col.style.transform = `translateY(${proofLerp(from, to, p2)}%)`;
