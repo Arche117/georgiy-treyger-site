@@ -163,6 +163,7 @@ section{position:relative;padding:120px 0;overflow:hidden;}
    unbreakable row and letting the browser's flex line-breaking scramble
    word fragments across lines. */
 .hero-h1 .line{display:block;}
+.hero-mobile-line{display:inline;}
 .hero-h1 .c-navy{color:var(--navy);}
 .hero-h1 .c-blue{color:var(--blue);}
 .hero-h1 .dot{width:0.16em;height:0.16em;min-width:10px;min-height:10px;border-radius:50%;transform:translateY(-0.55em);}
@@ -489,7 +490,7 @@ li.is-active .faq-content{grid-template-rows:1fr;}
 @media (max-width:640px){
   section{padding:82px 0;}
   .wrap{padding:0 20px;}
-  .header-row{position:relative;padding:16px 4px;gap:10px;}
+  .header-row{position:relative;padding:16px 8px;gap:10px;}
   .brand{gap:9px;}
   .brand-mark{width:38px;height:38px;}
   .brand-text{font-size:13px;}
@@ -498,6 +499,7 @@ li.is-active .faq-content{grid-template-rows:1fr;}
   .site-header .btn-outline .btn-arrow{width:30px;height:30px;}
   .nav-toggle{width:40px;height:40px;}
   .hero{padding-top:92px;}
+  .hero-mobile-line{display:block;}
   .hero-actions{flex-direction:column;align-items:stretch;}
   main .quickcontact,main .btn{width:100%;}
   main .btn{justify-content:space-between;min-height:52px;}
@@ -518,6 +520,8 @@ li.is-active .faq-content{grid-template-rows:1fr;}
   .proof{padding-bottom:0;}
   .proof-track{height:360vh;}
   .proof-sticky,.proof-frame{height:100svh;}
+  .proof-card img{filter:none;opacity:.58;}
+  .proof-card::after{mix-blend-mode:normal;background:linear-gradient(160deg,rgba(15,27,61,.5),rgba(61,99,214,.34));}
   .hero-sub,.about-copy p,.section-head>p:last-child,.rstep-body p,.svc-content-inner p,.booking-copy p,.faq-content-inner p,.reviews-note{font-size:16px;line-height:1.62;}
   .roadmap-sec,.proof-static,.booking-sec{padding:76px 0;}
   .roadmap-track{width:calc(100% - 40px);}
@@ -613,7 +617,7 @@ li.is-active .faq-content{grid-template-rows:1fr;}
         <p class="eyebrow reveal">Сосудистая хирургия · Флебология · Москва</p>
         <h1 class="hero-h1 reveal">
           <span class="line c-navy">Артерии, <span style="white-space:nowrap;">аорта, вены —</span></span>
-          <span class="line c-blue">комплексный подход к&nbsp;лечению сосудов</span>
+          <span class="line c-blue"><span class="hero-mobile-line">комплексный подход</span> <span class="hero-mobile-line">к&nbsp;лечению сосудов</span></span>
         </h1>
         <p class="hero-sub reveal">Сосудистый хирург с&nbsp;опытом 4000+ операций. Решает вопрос об&nbsp;операции без&nbsp;лишних обследований и&nbsp;очередей — очно или дистанционно, по&nbsp;фото и&nbsp;снимкам КТ.</p>
         <div class="hero-cta-row reveal">
@@ -1195,6 +1199,7 @@ if (proofTrack) {
   // the main thread long enough to delay the first paint (hero text stayed
   // invisible for several seconds). Runs after the browser is idle instead.
   const runProofSetup = () => {
+  const proofCompact = matchMedia('(max-width: 640px)').matches;
   const GALLERY_IMAGES = [
     /* real patients, frame-grabbed from video testimonials Georgy collected — replaces the Unsplash stock-photo placeholders (consent confirmed by the client) */
     'assets/images/proof/patient-01.jpg',
@@ -1213,7 +1218,7 @@ if (proofTrack) {
     'assets/images/proof/patient-14.jpg'
   ];
   const proofCols = Array.from(proofTrack.querySelectorAll('[data-proof-col]'));
-  const REPEAT_COUNT = 6; /* placeholder gallery — duplicated for volume until real patient photos are supplied.
+  const REPEAT_COUNT = proofCompact ? 3 : 6; /* placeholder gallery — duplicated for volume until real patient photos are supplied.
     Was 18 (~234 <img> total across 4 columns for only 13 unique URLs) — cut to 6 (~78 total),
     still several multiples taller than the sticky viewport needs for the parallax travel range. */
   proofCols.forEach((col, i) => {
@@ -1283,7 +1288,6 @@ if (proofTrack) {
   // itself (the "4000+" counter) is real content, so it still reveals —
   // just as a plain fade, with the frame/grid left in their resting state.
   const proofReducedMotion = matchMedia('(prefers-reduced-motion: reduce)').matches;
-  const proofCompact = matchMedia('(max-width: 640px)').matches;
 
   function updateProof() {
     const rect = proofTrack.getBoundingClientRect();

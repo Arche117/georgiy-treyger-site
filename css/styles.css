@@ -567,7 +567,7 @@ section h2{font-size:clamp(1.6rem,2.6vw,2.3rem);max-width:20ch;margin-bottom:8px
 }
 @media (max-width:640px){
   .wrap{padding:0 20px;}
-  .header-row{padding:14px 0;gap:12px;}
+  .header-row{padding:14px 8px;gap:12px;}
   .header-cta{display:none;}
   .hero-actions{flex-direction:column;align-items:stretch;}
   main .quickcontact,main .btn{width:100%;}
@@ -610,7 +610,7 @@ section h2{font-size:clamp(1.6rem,2.6vw,2.3rem);max-width:20ch;margin-bottom:8px
   .location-card .map-embed{height:auto;min-height:64px;background:transparent;overflow:visible;}
   .location-card .map-embed iframe{display:none;}
   .location-card .map-route-link{position:static;width:100%;min-height:56px;justify-content:space-between;padding:5px 6px 5px 22px;border:0;border-radius:999px;background:var(--navy);box-shadow:none;color:#fff;font-size:15px;}
-  .location-card .map-route-link span{display:grid;place-items:center;width:44px;height:44px;border-radius:50%;background:var(--cyan);color:var(--navy);font-size:17px;}
+  .location-card .map-route-link span{display:grid;place-items:center;width:44px;height:44px;border-radius:50%;background:#fff;color:var(--navy);font-size:17px;}
   .location-pending-note{height:260px;}
   .experience-stage{padding-top:52px;}
   .experience-stage::before{top:42px;right:-26%;width:76vw;opacity:.09;}
@@ -622,7 +622,7 @@ section h2{font-size:clamp(1.6rem,2.6vw,2.3rem);max-width:20ch;margin-bottom:8px
   .experience-stage-side{width:100%;max-width:430px;grid-template-columns:1fr;gap:22px;align-items:start;}
   .experience-metric{grid-template-columns:112px minmax(0,1fr);gap:18px;}
   .experience-metric strong{font-size:3.75rem;}
-  .experience-stage-countries{gap:16px;padding-top:38px;}
+  .experience-stage-countries{gap:16px;padding-top:38px;padding-bottom:42px;}
   .experience-countries-list{gap:8px 0;}
   .experience-countries-list p{font-size:15px;}
   .experience-countries-list p+p::before{margin:0 10px;}
