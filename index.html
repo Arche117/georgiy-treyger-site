@@ -1228,9 +1228,15 @@ if (proofTrack) {
     Was 18 (~234 <img> total across 4 columns for only 13 unique URLs) — cut to 6 (~78 total),
     still several multiples taller than the sticky viewport needs for the parallax travel range. */
   proofCols.forEach((col, i) => {
-    const subset = GALLERY_IMAGES.filter((_, idx) => idx % proofCols.length === i);
-    let repeated = [];
-    for (let r = 0; r < REPEAT_COUNT; r++) repeated = repeated.concat(subset);
+    /* 14 photos do not divide evenly into four columns. The previous
+       filter produced 4/4/3/3 images per pass, so the shorter columns
+       visibly ran out before the end of the mobile scroll scene. Cycle
+       through the gallery instead so every column has the same length. */
+    const cardsPerColumn = Math.ceil(GALLERY_IMAGES.length / proofCols.length) * REPEAT_COUNT;
+    const repeated = Array.from(
+      { length: cardsPerColumn },
+      (_, index) => GALLERY_IMAGES[(i + index * proofCols.length) % GALLERY_IMAGES.length]
+    );
     repeated.forEach((src) => {
       const card = document.createElement('div');
       card.className = 'proof-card';
