@@ -504,8 +504,12 @@ li.is-active .faq-content{grid-template-rows:1fr;}
   main .quickcontact,main .btn{width:100%;}
   main .btn{justify-content:space-between;min-height:52px;}
   .hero-actions>.quickcontact,.hero-actions>.btn,.hero-actions .quickcontact-toggle{width:100%;}
-  .hero-portrait{height:min(540px,150vw);min-height:0;width:100vw;margin:16px 0 0 calc(50% - 50vw);}
-  .hero-portrait img.hero-portrait-cool{height:min(540px,150vw);width:auto;max-width:100vw;margin-bottom:0;}
+  /* The source PNG has transparent canvas above and below the actual figure.
+     Size and offset the mobile portrait from its measured alpha bounds so the
+     doctor is fully visible and the hero ends at the coat instead of leaving
+     an empty strip under the image. */
+  .hero-portrait{height:min(490px,124.7vw);min-height:0;width:100vw;margin:16px 0 0 calc(50% - 50vw);align-items:flex-start;}
+  .hero-portrait img.hero-portrait-cool{width:min(100vw,430px);height:auto;max-width:none;margin:0;align-self:flex-start;transform:translate3d(var(--mouse-x,0px),calc(var(--mouse-y,0px) - min(64.5px,15vw)),0);}
   .about-frame{width:100%;min-width:0;min-height:0;aspect-ratio:4/5;}
   .about-frame-ring{display:none;}
   .about-photo-track{width:100%;}
