@@ -92,7 +92,7 @@ section{position:relative;padding:120px 0;overflow:hidden;}
 .btn-play-label{border-bottom:1px dotted var(--ink-muted);padding-bottom:2px;}
 
 /* ---- header ---- */
-.site-header{position:sticky;top:0;z-index:100;background:rgba(248,250,255,0.72);backdrop-filter:blur(16px);border-bottom:1px solid var(--line);}
+.site-header{position:sticky;top:0;z-index:100;background:#F8FAFF;border-bottom:1px solid var(--line);}
 .header-row{display:flex;align-items:center;gap:32px;padding:20px 0;}
 .brand{display:flex;align-items:center;gap:12px;margin-right:auto;}
 .brand-mark{position:relative;width:40px;height:40px;border-radius:50%;border:1.5px solid var(--navy);display:flex;align-items:center;justify-content:center;font-family:var(--font-display);font-weight:700;font-size:16px;color:var(--navy);}
@@ -479,7 +479,7 @@ li.is-active .faq-content{grid-template-rows:1fr;}
   .nav-mobile-meta{position:relative;z-index:1;display:flex;margin-top:auto;padding-top:34px;justify-content:space-between;gap:24px;color:rgba(255,255,255,.62);font-size:12px;line-height:1.5;}
   .nav-mobile-meta a{color:#fff;border-bottom:1px solid rgba(95,216,245,.6);}
   body.menu-open{overflow:hidden;overscroll-behavior:none;touch-action:none;}
-  body.menu-open .site-header{background:transparent;border-color:transparent;backdrop-filter:none;}
+  body.menu-open .site-header{background:var(--navy);border-color:rgba(255,255,255,.12);backdrop-filter:none;}
   body.menu-open .brand,body.menu-open .nav-toggle{position:relative;z-index:100;color:#fff;}
   body.menu-open .brand-mark{border-color:rgba(255,255,255,.75);color:#fff;}
   body.menu-open .brand-text small{color:rgba(255,255,255,.62);}
@@ -1219,9 +1219,8 @@ if (proofTrack) {
     'assets/images/proof/patient-14.jpg'
   ];
   const allProofCols = Array.from(proofTrack.querySelectorAll('[data-proof-col]'));
-  const proofCols = proofCompact ? allProofCols.slice(0, 3) : allProofCols;
-  if (proofCompact) allProofCols.slice(3).forEach((col) => { col.hidden = true; });
-  const REPEAT_COUNT = proofCompact ? 1 : 6; /* placeholder gallery — duplicated for volume until real patient photos are supplied.
+  const proofCols = allProofCols;
+  const REPEAT_COUNT = proofCompact ? 2 : 6; /* placeholder gallery — duplicated for volume until real patient photos are supplied.
     Was 18 (~234 <img> total across 4 columns for only 13 unique URLs) — cut to 6 (~78 total),
     still several multiples taller than the sticky viewport needs for the parallax travel range. */
   proofCols.forEach((col, i) => {
