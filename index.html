@@ -142,8 +142,8 @@ section{position:relative;padding:120px 0;overflow:hidden;}
 }
 .hero-grid{position:relative;z-index:2;display:grid;grid-template-columns:1.02fr 0.98fr;grid-template-rows:720px;gap:20px;align-items:stretch;height:720px;}
 .hero-copy{padding-bottom:100px;display:flex;flex-direction:column;justify-content:flex-start;align-items:flex-start;}
-/* Headline is now his own chosen sentence-length slogan (25 Aug: "Вены,
-   артерии, аорта — комплексный подход к лечению сосудов"), not three short
+/* Headline is now his own chosen sentence-length slogan: "Артерии,
+   аорта, вены — комплексный подход к лечению сосудов", not three short
    punchy words — so the size drops from the old 4.5rem cap (which was
    tuned for single words) to keep a long phrase from wrapping into a wall
    of text, and the per-word dot bullets are dropped since they read as
@@ -217,7 +217,7 @@ section{position:relative;padding:120px 0;overflow:hidden;}
 .roadmap-view[hidden]{display:none;}
 .roadmap-line{position:absolute;height:2px;background:var(--blue);opacity:0.35;z-index:0;}
 .rstep{position:relative;display:flex;flex-direction:column;align-items:center;text-align:center;gap:7px;flex:0 1 178px;min-width:0;}
-.rstep-dot{width:56px;height:56px;border:1px solid var(--line);border-radius:50%;background:#fff;display:flex;align-items:center;justify-content:center;color:var(--blue);box-shadow:none;flex-shrink:0;}
+.rstep-dot{width:56px;height:56px;border:0;border-radius:50%;background:#fff;display:flex;align-items:center;justify-content:center;color:var(--blue);box-shadow:none;flex-shrink:0;}
 .rstep-dot svg{width:22px;height:22px;}
 .rstep-dot{margin-top:6px;}
 .rstep-body{display:contents;}
@@ -375,6 +375,11 @@ li.is-active .svc-content{grid-template-rows:1fr;}
 .file-attach-text{overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
 .form-consent{font-size:12px;color:var(--ink-faint);margin-top:16px;}
 .form-submit{width:100%;justify-content:space-between;padding:17px 26px;}
+.form-submit:disabled{opacity:.62;cursor:wait;}
+.form-status{min-height:20px;margin-top:12px;font-size:13px;line-height:1.45;color:rgba(255,255,255,.75);}
+.form-status.is-success{color:var(--cyan-soft);font-weight:600;}
+.form-status.is-error{color:#ffd1d1;}
+.form-honeypot{position:absolute!important;left:-10000px!important;width:1px!important;height:1px!important;overflow:hidden!important;}
 
 /* ---- faq ---- */
 .faq-sec{background:rgba(248,250,255,0.8);}
@@ -422,6 +427,7 @@ li.is-active .faq-content{grid-template-rows:1fr;}
   .reveal,.char-parent .word,.char{opacity:1 !important;filter:none !important;transform:none !important;transition:none !important;}
   .btn-char-inner{transition:none !important;}
 }
+.hero-portrait img.hero-portrait-cool{height:108%;filter:saturate(.82) contrast(.98) brightness(1.035) hue-rotate(-3deg) drop-shadow(0 26px 44px rgba(10,19,48,.24));}
 
 @media (max-width:960px){
   .hero-grid{grid-template-columns:minmax(0,1fr);grid-template-rows:auto auto;height:auto;min-height:auto;}
@@ -549,7 +555,7 @@ li.is-active .faq-content{grid-template-rows:1fr;}
       <div class="hero-copy">
         <p class="eyebrow reveal">Сосудистая хирургия · Флебология · Москва</p>
         <h1 class="hero-h1 reveal">
-          <span class="line c-navy">Вены, <span style="white-space:nowrap;">артерии, аорта —</span></span>
+          <span class="line c-navy">Артерии, <span style="white-space:nowrap;">аорта, вены —</span></span>
           <span class="line c-blue">комплексный подход к&nbsp;лечению сосудов</span>
         </h1>
         <p class="hero-sub reveal">Сосудистый хирург с&nbsp;опытом 4000+ операций. Решает вопрос об&nbsp;операции без&nbsp;лишних обследований и&nbsp;очередей — очно или дистанционно, по&nbsp;фото и&nbsp;снимкам КТ.</p>
@@ -574,7 +580,7 @@ li.is-active .faq-content{grid-template-rows:1fr;}
         </div>
       </div>
       <div class="hero-portrait reveal">
-        <img src="assets/images/doctor-portrait-nobg.png" alt="Трейгер Георгий Александрович, сосудистый хирург" width="854" height="1280">
+        <img class="hero-portrait-cool" src="assets/images/about/new/hero-bw-colorized-cutout-v2.png" alt="Трейгер Георгий Александрович, сосудистый хирург" width="1024" height="1536">
         <div class="hero-rating-badge">
           <div class="hero-rating-badge-top"><strong>5.0</strong><span class="stars" aria-hidden="true">★★★★★</span></div>
           <span>на&nbsp;ПроДокторов</span>
@@ -602,7 +608,7 @@ li.is-active .faq-content{grid-template-rows:1fr;}
       <div class="about-copy reveal">
         <p class="eyebrow">Обо мне</p>
         <h2 class="reveal">Врач, который остаётся на&nbsp;связи</h2>
-        <p>Меня зовут Георгий Александрович Трейгер. Больше 10 лет оперирую сосуды — от&nbsp;варикоза до&nbsp;критической ишемии и&nbsp;аневризм аорты, свыше 4000 реконструкций. Стажировки в&nbsp;Нидерландах, Великобритании и&nbsp;Израиле научили одному: когда счёт идёт на&nbsp;часы, решение нужно принимать быстро. Поэтому отвечаю в&nbsp;мессенджерах лично — очно или дистанционно, но всегда за&nbsp;один визит.</p>
+        <p>Меня зовут Георгий Александрович Трейгер. Больше 10 лет работаю в&nbsp;российском здравоохранении и&nbsp;оперирую сосуды — от&nbsp;варикоза до&nbsp;критической ишемии и&nbsp;аневризм аорты, свыше 4000 реконструкций. Международная практика в&nbsp;Нидерландах, Великобритании и&nbsp;Израиле укрепила главный принцип: когда счёт идёт на&nbsp;часы, решение нужно принимать быстро. Поэтому отвечаю в&nbsp;мессенджерах лично — очно или дистанционно, но всегда по&nbsp;существу.</p>
         <a class="btn btn-outline" href="about.html">
           <span>Подробнее</span>
           <span class="btn-arrow" aria-hidden="true">
@@ -699,12 +705,12 @@ li.is-active .faq-content{grid-template-rows:1fr;}
             <div class="svc-content"><div class="svc-content-inner"><p>Профилактика инсульта: оценка и&nbsp;коррекция атеросклероза сонных артерий.</p></div></div>
           </li>
           <li data-service="4" data-img="assets/images/services/varicose-foot.png">
-            <button class="svc-trigger" type="button"><span class="svc-index">05</span><span class="svc-title">Варикозная болезнь — лазер ЭВЛК</span></button>
-            <div class="svc-content"><div class="svc-content-inner"><p>Лазерная коагуляция вен (ЭВЛК) — без&nbsp;разрезов, амбулаторно.</p></div></div>
+            <button class="svc-trigger" type="button"><span class="svc-index">05</span><span class="svc-title">Варикозная болезнь</span></button>
+            <div class="svc-content"><div class="svc-content-inner"><p>Лазерная коагуляция, склеротерапия — без&nbsp;разрезов, амбулаторно.</p></div></div>
           </li>
           <li data-service="5" data-img="assets/images/services/dialysis-arm.png">
             <button class="svc-trigger" type="button"><span class="svc-index">06</span><span class="svc-title">Сосудистый доступ для&nbsp;диализа</span></button>
-            <div class="svc-content"><div class="svc-content-inner"><p>Формирование и&nbsp;наблюдение сосудистого доступа для&nbsp;программного гемодиализа.</p></div></div>
+            <div class="svc-content"><div class="svc-content-inner"><p>Формирование и&nbsp;коррекция сосудистого доступа для&nbsp;программного гемодиализа.</p></div></div>
           </li>
         </ul>
         <div class="svc-display">
@@ -804,26 +810,28 @@ li.is-active .faq-content{grid-template-rows:1fr;}
         </div>
       </div>
       <div class="booking-panel">
-        <form id="bookingForm">
+        <form id="bookingForm" data-endpoint="https://georgiy-treyger-site.vercel.app/api/intake" enctype="multipart/form-data">
           <p class="form-hint">Заполните форму — я&nbsp;свяжусь с&nbsp;вами в&nbsp;течение рабочего дня.</p>
           <div class="form-row">
-            <div class="form-group"><label for="bf-name">Имя</label><input type="text" id="bf-name" required></div>
-            <div class="form-group"><label for="bf-phone">Телефон</label><input type="tel" id="bf-phone" required></div>
+            <div class="form-group"><label for="bf-name">Имя</label><input type="text" id="bf-name" name="name" autocomplete="name" maxlength="80" required></div>
+            <div class="form-group"><label for="bf-contact">Телефон или e-mail</label><input type="text" id="bf-contact" name="contact" autocomplete="tel" maxlength="120" required></div>
           </div>
-          <div class="form-group"><label for="bf-message">Комментарий <span class="form-optional">(необязательно)</span></label><textarea id="bf-message" rows="3"></textarea></div>
+          <div class="form-group"><label for="bf-message">Комментарий <span class="form-optional">(необязательно)</span></label><textarea id="bf-message" name="message" maxlength="2000" rows="3"></textarea></div>
           <div class="form-group">
             <label for="bf-photo">Фото проблемного участка <span class="form-optional">(необязательно)</span></label>
             <label class="file-attach" for="bf-photo" id="fileAttachLabel">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21.44 11.05l-9.19 9.19a6 6 0 0 1-8.49-8.49l9.19-9.19a4 4 0 0 1 5.66 5.66l-9.2 9.19a2 2 0 0 1-2.83-2.83l8.49-8.48"/></svg>
               <span class="file-attach-text" id="fileAttachText">Прикрепить фото</span>
             </label>
-            <input type="file" id="bf-photo" accept="image/*" multiple class="file-input-hidden">
+            <input type="file" id="bf-photo" name="photos" accept="image/jpeg,image/png,image/webp" multiple class="file-input-hidden">
           </div>
+          <div class="form-honeypot" aria-hidden="true"><label for="bf-company">Компания</label><input type="text" id="bf-company" name="company" tabindex="-1" autocomplete="off"></div>
           <button class="btn btn-solid form-submit" type="submit">
             <span>Отправить заявку</span>
             <span class="btn-arrow" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M8 7h9v9"/></svg></span>
           </button>
           <p class="form-consent">Отправляя форму, вы соглашаетесь на&nbsp;обработку персональных данных.</p>
+          <p class="form-status" id="bookingFormStatus" role="status" aria-live="polite"></p>
         </form>
       </div>
     </div>
@@ -863,7 +871,7 @@ li.is-active .faq-content{grid-template-rows:1fr;}
         </li>
         <li data-service="6">
           <button class="faq-trigger" type="button"><span class="faq-index">07</span><span class="faq-title">Какой у&nbsp;вас опыт?</span><span class="faq-plus" aria-hidden="true">+</span></button>
-          <div class="faq-content"><div class="faq-content-inner"><p>10+ лет практики, свыше 4000 сосудистых реконструкций, 40+ научных публикаций и&nbsp;стажировки в&nbsp;Нидерландах, Великобритании и&nbsp;Израиле.</p></div></div>
+          <div class="faq-content"><div class="faq-content-inner"><p>10+ лет работы в&nbsp;российском здравоохранении, свыше 4000 сосудистых реконструкций, 40+ научных публикаций и&nbsp;международная практика в&nbsp;Нидерландах, Великобритании и&nbsp;Израиле.</p></div></div>
         </li>
       </ul>
     </div>
@@ -1329,15 +1337,52 @@ if (photoInput && fileAttachText && fileAttachLabel) {
   });
 }
 
-// booking form fake submit
+// Booking form → protected server-side Telegram intake endpoint.
 const bookingForm = document.getElementById('bookingForm');
 if (bookingForm) {
-  bookingForm.addEventListener('submit', (e) => {
+  bookingForm.addEventListener('submit', async (e) => {
     e.preventDefault();
-    const btn = bookingForm.querySelector('.form-submit span');
-    const original = btn.textContent;
-    btn.textContent = 'Отправлено ✓';
-    setTimeout(() => { btn.textContent = original; }, 2000);
+    const endpoint = bookingForm.dataset.endpoint || window.TREYGER_INTAKE_ENDPOINT || '';
+    const submitButton = bookingForm.querySelector('.form-submit');
+    const buttonText = submitButton.querySelector('span');
+    const status = document.getElementById('bookingFormStatus');
+    const photos = [...photoInput.files];
+
+    status.className = 'form-status';
+    if (!endpoint) {
+      status.textContent = 'Форма ещё подключается. Пока напишите врачу в Telegram.';
+      status.classList.add('is-error');
+      return;
+    }
+    if (photos.length > 6 || photos.some(file => file.size > 9.5 * 1024 * 1024)) {
+      status.textContent = 'Можно приложить до 6 фотографий, каждая — не больше 9,5 МБ.';
+      status.classList.add('is-error');
+      return;
+    }
+
+    submitButton.disabled = true;
+    buttonText.textContent = 'Отправляем…';
+    status.textContent = 'Передаём заявку и фотографии врачу.';
+
+    try {
+      const response = await fetch(endpoint, {method:'POST', body:new FormData(bookingForm)});
+      const result = await response.json().catch(() => ({}));
+      if (!response.ok) throw new Error(result.error || 'Не удалось отправить заявку');
+      bookingForm.reset();
+      fileAttachText.textContent = 'Прикрепить фото';
+      fileAttachLabel.classList.remove('has-file');
+      const applicationNumber = result.applicationId ? ` №${result.applicationId}` : '';
+      status.textContent = `Заявка${applicationNumber} принята. Сохраните номер — мы свяжемся с вами в течение рабочего дня.`;
+      status.classList.add('is-success');
+      buttonText.textContent = 'Отправлено ✓';
+    } catch (error) {
+      status.textContent = 'Не получилось отправить заявку. Напишите врачу в Telegram или попробуйте ещё раз.';
+      status.classList.add('is-error');
+      buttonText.textContent = 'Отправить заявку';
+    } finally {
+      submitButton.disabled = false;
+      if (status.classList.contains('is-success')) setTimeout(() => { buttonText.textContent = 'Отправить заявку'; }, 2500);
+    }
   });
 }
 </script>
