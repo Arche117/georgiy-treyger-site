@@ -398,8 +398,11 @@ section h2{font-size:clamp(1.6rem,2.6vw,2.3rem);max-width:20ch;margin-bottom:8px
 .location-phone{display:inline-flex;align-items:center;gap:8px;font-family:var(--font-display);font-size:14px;font-weight:600;color:var(--ink);margin-bottom:18px;}
 .location-phone-icon{flex:none;width:26px;height:26px;border-radius:50%;background:rgba(62,99,201,0.12);color:var(--accent);display:flex;align-items:center;justify-content:center;}
 .location-phone-icon svg{width:12px;height:12px;}
-.map-embed{border-radius:var(--radius-md);overflow:hidden;border:1px solid var(--panel-border);height:180px;}
+.map-embed{position:relative;border-radius:var(--radius-md);overflow:hidden;border:1px solid var(--panel-border);height:180px;}
 .map-embed iframe{width:100%;height:100%;border:0;display:block;filter:saturate(0.85);}
+.map-route-link{position:absolute;left:16px;bottom:16px;display:inline-flex;align-items:center;gap:9px;padding:11px 15px;border-radius:999px;background:rgba(255,255,255,.96);box-shadow:0 8px 24px rgba(15,34,64,.14);color:var(--navy);font-size:13px;font-weight:700;line-height:1;transition:background .2s ease,color .2s ease,transform .2s ease;}
+.map-route-link:hover{background:var(--cyan);color:var(--navy);transform:translateY(-1px);}
+.map-route-link span{font-size:16px;line-height:0;}
 
 
 .contact{padding-top:84px;}
@@ -575,7 +578,10 @@ section h2{font-size:clamp(1.6rem,2.6vw,2.3rem);max-width:20ch;margin-bottom:8px
   .contact-channels-primary .channel-card,.contact-channels-primary .channel-card+.channel-card{padding:22px 0;border-left:0;border-bottom:1px solid var(--line);}
   .contact-channels-primary .channel-card .chevron{right:0;}
   .location-card{padding:26px 0;}
-  .location-card .map-embed,.location-pending-note{height:260px;}
+  .location-card .map-embed{height:auto;min-height:64px;background:transparent;overflow:visible;}
+  .location-card .map-embed iframe{display:none;}
+  .location-card .map-route-link{position:static;width:100%;min-height:64px;justify-content:space-between;padding:0 20px;border:1px solid var(--line);border-radius:var(--radius-md);background:var(--panel);box-shadow:none;font-size:14px;}
+  .location-pending-note{height:260px;}
   .experience-stage{padding-top:52px;}
   .experience-stage::before{top:42px;right:-26%;width:76vw;opacity:.09;}
   .experience-stage-head{margin-bottom:34px;}
