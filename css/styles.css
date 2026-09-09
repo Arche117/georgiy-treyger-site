@@ -527,11 +527,11 @@ section h2{font-size:clamp(1.6rem,2.6vw,2.3rem);max-width:20ch;margin-bottom:8px
   .nav-toggle[aria-expanded="true"] span:nth-child(3){transform:translateY(-5.5px) rotate(-45deg);}
   body.menu-open{overflow:hidden;}
   body.menu-open .site-header{background:transparent;border-color:transparent;backdrop-filter:none;}
-  body.menu-open .brand,body.menu-open .nav-toggle,body.menu-open .header-cta{position:relative;z-index:100;color:#fff;}
+  body.menu-open .brand,body.menu-open .nav-toggle{position:relative;z-index:100;color:#fff;}
   body.menu-open .brand-mark{border-color:rgba(255,255,255,.75);color:#fff;}
   body.menu-open .brand-text small{color:rgba(255,255,255,.62);}
-  body.menu-open .header-cta .quickcontact-toggle{border-color:rgba(255,255,255,.35);color:#fff;}
-  body.menu-open .header-cta .chevron{background:var(--cyan);color:var(--navy);}
+  body.menu-open .header-cta{display:none;}
+  body.menu-open .nav-toggle{margin-left:auto;background:transparent;border-color:rgba(95,216,245,.72);box-shadow:inset 0 0 0 1px rgba(95,216,245,.12);}
   .about-grid{grid-template-columns:1fr;}
   .about-photos{order:-1;height:auto;aspect-ratio:4/5;}
   .roadmap-flow{display:none;}
