@@ -101,6 +101,7 @@ section{position:relative;padding:120px 0;overflow:hidden;}
 .brand-text small{display:block;font-weight:400;color:var(--ink-muted);font-size:11.5px;}
 .main-nav{display:flex;gap:30px;font-size:14.5px;color:var(--ink-muted);}
 .main-nav a:hover{color:var(--ink);}
+.nav-mobile-meta{display:none;}
 .nav-toggle{display:none;width:42px;height:42px;flex:none;border:1px solid var(--line);border-radius:50%;background:rgba(255,255,255,.7);align-items:center;justify-content:center;flex-direction:column;gap:4px;color:var(--navy);cursor:pointer;}
 .nav-toggle span{width:16px;height:1.5px;border-radius:2px;background:currentColor;transition:transform .2s ease,opacity .2s ease;}
 .nav-toggle[aria-expanded="true"] span:nth-child(1){transform:translateY(5.5px) rotate(45deg);}
@@ -174,6 +175,7 @@ section{position:relative;padding:120px 0;overflow:hidden;}
 .hero-stat:first-child{padding-left:0;}
 .hero-stat + .hero-stat{border-left:1px solid var(--line);}
 .hero-stat strong{display:flex;align-items:center;gap:6px;font-family:var(--font-display);font-size:30px;font-weight:700;color:var(--navy);}
+.hero-stat-unit{font-size:.48em;font-weight:700;line-height:1;}
 .hero-stat strong svg{width:20px;height:20px;color:var(--blue);}
 .hero-stat span{display:block;font-size:13px;color:var(--ink-muted);margin-top:4px;white-space:nowrap;}
 
@@ -447,7 +449,7 @@ li.is-active .faq-content{grid-template-rows:1fr;}
   .hero-grid{grid-template-columns:minmax(0,1fr);grid-template-rows:auto auto;height:auto;min-height:auto;}
   .hero-copy{min-width:0;padding-bottom:0;}
   .hero-portrait{order:0;width:100%;margin:12px 0 0;overflow:hidden;align-items:flex-end;}
-  .hero-portrait img.hero-portrait-cool{width:auto;height:440px;max-width:100%;object-fit:contain;object-position:center bottom;align-self:flex-end;}
+  .hero-portrait img.hero-portrait-cool{width:auto;height:500px;max-width:none;object-fit:contain;object-position:center bottom;align-self:flex-end;margin-bottom:-36px;}
   .about-grid,.services-grid,.booking-grid{grid-template-columns:1fr;gap:36px;}
   .footer-grid{grid-template-columns:1fr 1fr;}
   .reasons-grid{grid-template-columns:1fr 1fr;}
@@ -463,10 +465,25 @@ li.is-active .faq-content{grid-template-rows:1fr;}
   .rstep-body h3{grid-column:2;grid-row:2;max-width:none;}
   .rstep-body p{grid-column:2;grid-row:3;max-width:38ch;}
   .roadmap-line{display:none;}
-  .main-nav{display:none;position:absolute;top:calc(100% + 1px);left:24px;right:24px;padding:10px;background:rgba(248,250,255,.98);border:1px solid var(--line);border-radius:18px;box-shadow:0 18px 40px rgba(15,27,61,.14);}
-  .main-nav.is-open{display:flex;flex-direction:column;gap:0;}
-  .main-nav a{padding:12px 14px;border-radius:10px;}
-  .main-nav a:hover{background:var(--panel-tint);}
+  .main-nav{display:flex;position:fixed;inset:0;z-index:99;padding:clamp(118px,20vh,170px) 24px 34px;background:linear-gradient(145deg,#0f1b3d 0%,#172958 58%,#203974 100%);flex-direction:column;align-items:stretch;gap:0;opacity:0;visibility:hidden;transform:translateY(-100%);transition:transform .65s cubic-bezier(.65,.01,.05,.99),opacity .3s ease,visibility .65s;overflow:auto;}
+  .main-nav::before,.main-nav::after{content:'';position:absolute;border-radius:50%;pointer-events:none;}
+  .main-nav::before{width:70vw;height:70vw;right:-24vw;top:-12vw;background:radial-gradient(circle,rgba(95,216,245,.2),transparent 68%);}
+  .main-nav::after{width:48vw;height:48vw;left:-20vw;bottom:-12vw;border:1px solid rgba(189,246,253,.18);box-shadow:0 0 0 24px rgba(189,246,253,.035),0 0 0 48px rgba(189,246,253,.025);}
+  .main-nav.is-open{opacity:1;visibility:visible;transform:translateY(0);}
+  .main-nav>a{position:relative;z-index:1;padding:18px 0;border-bottom:1px solid rgba(255,255,255,.16);border-radius:0;color:#fff;font-family:var(--font-display);font-size:clamp(2.3rem,10vw,4.5rem);font-weight:700;line-height:1;transform:translateY(-18px);opacity:0;transition:transform .45s ease,opacity .35s ease,color .2s ease;}
+  .main-nav.is-open>a{transform:translateY(0);opacity:1;}
+  .main-nav.is-open>a:nth-child(2){transition-delay:.07s;}
+  .main-nav.is-open>a:nth-child(3){transition-delay:.14s;}
+  .main-nav>a:hover{color:var(--cyan);}
+  .nav-mobile-meta{position:relative;z-index:1;display:flex;margin-top:auto;padding-top:34px;justify-content:space-between;gap:24px;color:rgba(255,255,255,.62);font-size:12px;line-height:1.5;}
+  .nav-mobile-meta a{color:#fff;border-bottom:1px solid rgba(95,216,245,.6);}
+  body.menu-open{overflow:hidden;}
+  body.menu-open .site-header{background:transparent;border-color:transparent;backdrop-filter:none;}
+  body.menu-open .brand,body.menu-open .nav-toggle,body.menu-open .site-header>.wrap>.btn{position:relative;z-index:100;color:#fff;}
+  body.menu-open .brand-mark{border-color:rgba(255,255,255,.75);color:#fff;}
+  body.menu-open .brand-text small{color:rgba(255,255,255,.62);}
+  body.menu-open .site-header>.wrap>.btn{border-color:rgba(255,255,255,.35);}
+  body.menu-open .site-header>.wrap>.btn .btn-arrow{background:var(--cyan);color:var(--navy);}
   .nav-toggle{display:flex;}
 }
 @media (max-width:640px){
@@ -483,9 +500,13 @@ li.is-active .faq-content{grid-template-rows:1fr;}
   .hero{padding-top:92px;}
   .hero-actions{flex-direction:column;align-items:stretch;}
   .hero-actions .btn{justify-content:center;}
-  .hero-portrait{min-height:0;margin-top:4px;}
-  .hero-portrait img.hero-portrait-cool{height:410px;width:auto;max-width:none;}
-  .hero-stats{width:100%;justify-content:space-between;}
+  .hero-portrait{height:470px;min-height:0;margin-top:4px;}
+  .hero-portrait img.hero-portrait-cool{height:540px;width:auto;max-width:none;margin-bottom:-38px;}
+  .about-frame{width:100%;min-width:0;min-height:0;aspect-ratio:4/5;}
+  .about-frame-ring{display:none;}
+  .about-photo-track{width:100%;}
+  .about-photo-slide{min-width:100%;}
+  .hero-stats{width:100%;justify-content:space-between;padding:16px 14px;border:1px solid rgba(255,255,255,.72);border-radius:18px;background:rgba(255,255,255,.72);backdrop-filter:blur(10px);}
   .hero-stat{padding:0 14px;min-width:0;}
   .hero-stat:last-child{padding-right:0;}
   .hero-stat strong{font-size:27px;}
@@ -539,6 +560,7 @@ li.is-active .faq-content{grid-template-rows:1fr;}
       <a href="index.html" aria-current="page">Главная</a>
       <a href="about.html">Обо мне</a>
       <a href="contacts.html">Контакты</a>
+      <div class="nav-mobile-meta"><span>Сосудистая хирургия<br>Москва</span><span><a href="tel:+79514808215">+7 951 480‑82‑15</a><br><a href="https://t.me/dr_treiger" target="_blank" rel="noopener">Telegram</a></span></div>
     </nav>
     <a class="btn btn-outline" href="#booking">
       <span>Записаться</span>
@@ -606,7 +628,7 @@ li.is-active .faq-content{grid-template-rows:1fr;}
         <div class="hero-stats reveal">
           <div class="hero-stat"><strong>4000+</strong><span>операций</span></div>
           <div class="hero-stat"><strong>10+</strong><span>лет опыта</span></div>
-          <div class="hero-stat"><strong>3</strong><span>страны практики</span></div>
+          <div class="hero-stat"><strong>3 <small class="hero-stat-unit">страны</small></strong><span>международная практика</span></div>
         </div>
       </div>
       <div class="hero-portrait reveal">
@@ -963,11 +985,21 @@ if (navToggle && mainNav) {
     const open = mainNav.classList.toggle('is-open');
     navToggle.setAttribute('aria-expanded', String(open));
     navToggle.setAttribute('aria-label', open ? 'Закрыть меню' : 'Открыть меню');
+    document.body.classList.toggle('menu-open', open);
   });
   mainNav.addEventListener('click', () => {
     mainNav.classList.remove('is-open');
     navToggle.setAttribute('aria-expanded', 'false');
     navToggle.setAttribute('aria-label', 'Открыть меню');
+    document.body.classList.remove('menu-open');
+  });
+  document.addEventListener('keydown', (event) => {
+    if (event.key === 'Escape' && mainNav.classList.contains('is-open')) {
+      mainNav.classList.remove('is-open');
+      navToggle.setAttribute('aria-expanded', 'false');
+      navToggle.setAttribute('aria-label', 'Открыть меню');
+      document.body.classList.remove('menu-open');
+    }
   });
 }
 
