@@ -1,0 +1,7 @@
+[build]
+  command = "node build-netlify.mjs"
+  publish = "dist"
+
+[[edge_functions]]
+  function = "intake"
+  path = "/api/intake"
